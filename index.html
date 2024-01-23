@@ -4,18 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agenda de eventos - ProxiTimer</title>
-    <link rel="stylesheet" href="./css/main.css">
+    <!-- <TITLE> -->
+    <title>VuelaSmart | Vola sin límites por Argentina</title>
+    <!-- ----Styles---- -->
+    <link rel="stylesheet" href="./css/styles.css">
+    <!-- ----Fonts---- -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100;200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://kit.fontawesome.com/6b84894990.js" crossorigin="anonymous"></script>
+    <!-- ----Icon---- -->
+    <link rel="shortcut icon" href="./images/header/logo.png">
 </head>
 
 <body>
     <header>
+        <nav>
+            <ul>
+                <section class="containerNav">
+                    <nav class="navbar">
+                        <ul class="navLinks">
+                            <li><a href="./index.html">INICIO</a></li>
+                            <li><a href="#">VUELOS</a></li>
+                            <li><a href="#">PROMOCIONES</a></li>
+                            <li><a href="#">IR A PAGAR</a></li>
+                        </ul>
+                    </nav>
+                </section>
+            </ul>
+        </nav>
+
         <section>
-            <img class="imagenEncabezado" src="./images/header/logo.png" alt="Logo de ProxiTimer">
-            <h1>Bienvenido a ProxiTimer</h1>
+            <img class="imagenEncabezado" src="./images/header/logo.png" alt="Logo VuelaSmart">
+            <h1>BIENVENIDO A VUELASMART</h1>
+            <p>Vola sin límites por Argentina</p>
         </section>
 
         <section class="redesSociales">
@@ -26,10 +49,72 @@
     </header>
 
     <main>
-        
+        <section class="about">
+            <div class="container">
+                <h2>VUELOS</h2>
+            </div>
+        </section>
+
+        <form method="post">
+            <label>
+                <input type="radio" name="tipo_vuelo" value="ida_vuelta"> IDA Y VUELTA
+            </label>
+            <br>
+            <label>
+                <input type="radio" name="tipo_vuelo" value="solo_ida"> SOLO IDA
+            </label>
+            <br>
+            <label>
+                <input type="radio" name="tipo_vuelo" value="multidestino"> MULTIDESTINO
+            </label>
+            <br>
+            <label>
+                Salgo de: <input type="text" name="origen">
+            </label>
+            <br>
+            <label>
+                Voy a: <input type="text" name="destino">
+            </label>
+            <br>
+            <label>
+                Fecha de salida: <input type="date" name="fecha_salida">
+            </label>
+            <br>
+            <label>
+                Fecha de regreso: <input type="date" name="fecha_regreso">
+            </label>
+            <br>
+            <label>
+                <input type="checkbox" name="fecha_indefinida"> No tengo fecha definida
+            </label>
+            <br>
+            <label>
+                Personas: <input type="number" name="num_personas" min="1">
+            </label>
+            <br>
+            <label>
+                Clase:
+                <select name="clase">
+                    <option value="economica">Económica</option>
+                    <option value="ejecutiva">Ejecutiva</option>
+                    <option value="primera_clase">Primera Clase</option>
+                </select>
+            </label>
+            <br>
+            <input type="submit" value="Buscar">
+        </form>
     </main>
 
+    <footer>
+        <ul class="importantInformation">
+            <li class="information"><a href="#">Protección de Datos Personales</a></li>
+            <li class="separation">|</li>
+            <li class="information"><a href="#">Política de Privacidad</a></li>
+        </ul>
+
+        <p><br>&copy; 2024 VuelaSmart. Todos los derechos reservados.</p>
+    </footer>
+<script src="./js/main.js"></script>
 </body>
-<script src="js/main.js"></script>
 
 </html>

@@ -1,0 +1,178 @@
+/* Estilos Generales */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Playpen Sans', cursive;
+}
+
+/* Header */
+/* ---Estilos Generales del Header--- */
+header {
+    background-image: url(../images/fondo.jpg);
+    text-align: center;
+    padding: auto;
+    padding-bottom: 20px;
+}
+
+header h1 {
+    font-size: 32px;
+    color: #ffffff;
+    margin-bottom: 10px;
+    margin-top: -50px;
+}
+
+header p {
+    font-size: 24px;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.buttonLanguage a img {
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 0px;
+    margin-left: -5px;
+    margin-top: -10px;
+}
+
+/* ---Portada--- */
+.imagenEncabezado {
+    width: 20%;
+    height: 20%;
+}
+
+.redesSociales a {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-right: 10px;
+}
+
+.iconoFacebook {
+    background-image: url('../images/header/facebook.png');
+}
+
+.iconoX {
+    background-image: url('../images/header/x.png');
+
+}
+
+.iconoInstagram {
+    background-image: url('../images/header/instagram.png');
+}
+
+/* --Barra de Navegación-- */
+.containerNav {
+    display: flex;
+    padding: 10px;
+    height: 50px;
+    background-color: rgb(239, 71, 111);
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.navLinks {
+    display: flex;
+    align-items: center;
+}
+
+.navLinksMobile {
+    display: flex;
+    align-items: center;
+}
+
+.buttonMenuToggle {
+    display: none;
+}
+
+li {
+    list-style-type: none;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    margin: 10px;
+}
+
+li>a {
+    padding: 8px 24px;
+}
+
+.navLinks a,
+.navLinksMobile a {
+    display: block;
+    border: #ffffff solid 2px;
+    border-radius: 20px;
+    padding: 7px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.navLinks a:hover,
+.navLinksMobile a:hover {
+    background-color: rgb(5, 121, 182);
+    border-radius: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Main */
+/* --Page Index-- */
+form {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  input[type="radio"] {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  input[type="text"],
+  input[type="date"],
+  input[type="number"],
+  select,
+  input[type="submit"] {
+    width: calc(33.33% - 10px);
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+  }
+  
+  input[type="checkbox"] {
+    display: block;
+    margin-top: 10px;
+  }
+
+/* Footer */
+/* --Estilos Generales del Footer-- */
+footer {
+    background-color: rgba(239, 71, 111, 0.9);
+    padding: 20px;
+    text-align: center;
+    color: #000000;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
