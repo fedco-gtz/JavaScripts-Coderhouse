@@ -3,15 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <TITLE> -->
     <title>VuelaSmart | Vola sin límites por Argentina</title>
     <!-- ----Styles---- -->
     <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- ----Fonts---- -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100;200;300;400;500;600;700;800&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap"
         rel="stylesheet">
     <script src="https://kit.fontawesome.com/6b84894990.js" crossorigin="anonymous"></script>
     <!-- ----Icon---- -->
@@ -20,101 +19,146 @@
 
 <body>
     <header>
-        <nav>
+        <div class="blandLogo">
+            <img src="./images/header/logo.png" alt="VUELASMART" width="20%" height="20%">
+        </div>
+        <nav class="navbar">
             <ul>
-                <section class="containerNav">
-                    <nav class="navbar">
-                        <ul class="navLinks">
-                            <li><a href="./index.html">INICIO</a></li>
-                            <li><a href="#">VUELOS</a></li>
-                            <li><a href="#">PROMOCIONES</a></li>
-                            <li><a href="#">IR A PAGAR</a></li>
-                        </ul>
-                    </nav>
-                </section>
+                <li><a href="./index.html"><b>INICIO</b></a></li>
+                <li><a><b>SERVICIOS</b></a>
+                    <ul id="submenu">
+                        <li><a href="#">COMPRAR PASAJES</a></li>
+                        <li><a href="#">VER RESERVA</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="pagar"><b>PAGAR</b></a></li>
             </ul>
         </nav>
-
-        <section>
-            <img class="imagenEncabezado" src="./images/header/logo.png" alt="Logo VuelaSmart">
-            <h1>BIENVENIDO A VUELASMART</h1>
-            <p>Vola sin límites por Argentina</p>
-        </section>
-
-        <section class="redesSociales">
-            <a href="https://www.facebook.com/tu-pagina" target="_blank" class="iconoFacebook"></a>
-            <a href="https://www.twitter.com/tu-pagina" target="_blank" class="iconoX"></a>
-            <a href="https://www.instagram.com/tu-pagina" target="_blank" class="iconoInstagram"></a>
-        </section>
     </header>
 
     <main>
-        <section class="about">
-            <div class="container">
-                <h2>VUELOS</h2>
+        <div class="mainTitle">
+            <h1>BIENVENIDO A VUELASMART</h1>
+            <p><b>Vola sin límites</b> por Argentina</p>
+        </div>
+
+        <section class="services">
+            <h2>VUELOS</h2>
+            <div class="container mt-5">
+                <form>
+                    <div class="formRow">
+                        <div class="form-group col-md-12">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio">
+                                <label class="form-check-label"><b>Ida</b></label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio">
+                                <label class="form-check-label"><b>Ida y Vuelta</b></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label><b>Salgo de:</b></label>
+                            <input type="text" class="form-control">
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label><b>Voy a:</b></label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label><b>Salida:</b></label>
+                            <input type="date" class="form-control">
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label><b>Regreso:</b></label>
+                            <input type="date" class="form-control">
+                        </div>
+
+                        <div class="form-group col-md-4 align-items-center d-flex mt-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox">
+                                <label class="form-check-label"><b>No decidí la fecha del viaje</b></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label><b>Clase:</b></label>
+                            <select class="form-control">
+                                <option>Económica</option>
+                                <option>Premium</option>
+                                <option>Business</option>
+                                <option>Primera</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label><b>Personas:</b></label>
+                            <input type="number" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <button type="submit" class="btn btn-primary"><b>BUSCAR</b></button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </section>
 
-        <form method="post">
-            <label>
-                <input type="radio" name="tipo_vuelo" value="ida_vuelta"> IDA Y VUELTA
-            </label>
-            <br>
-            <label>
-                <input type="radio" name="tipo_vuelo" value="solo_ida"> SOLO IDA
-            </label>
-            <br>
-            <label>
-                <input type="radio" name="tipo_vuelo" value="multidestino"> MULTIDESTINO
-            </label>
-            <br>
-            <label>
-                Salgo de: <input type="text" name="origen">
-            </label>
-            <br>
-            <label>
-                Voy a: <input type="text" name="destino">
-            </label>
-            <br>
-            <label>
-                Fecha de salida: <input type="date" name="fecha_salida">
-            </label>
-            <br>
-            <label>
-                Fecha de regreso: <input type="date" name="fecha_regreso">
-            </label>
-            <br>
-            <label>
-                <input type="checkbox" name="fecha_indefinida"> No tengo fecha definida
-            </label>
-            <br>
-            <label>
-                Personas: <input type="number" name="num_personas" min="1">
-            </label>
-            <br>
-            <label>
-                Clase:
-                <select name="clase">
-                    <option value="economica">Económica</option>
-                    <option value="ejecutiva">Ejecutiva</option>
-                    <option value="primera_clase">Primera Clase</option>
-                </select>
-            </label>
-            <br>
-            <input type="submit" value="Buscar">
-        </form>
+        <section class="services">
+            <h2>METRICAS</h2>
+        </section>
+        <section class="metrics">
+            <div class="dataCard">
+                <h3><span class="plusSign">+</span> 100.000</h3>
+                <h2>PERSONAS</h2>
+                <p>Confiaron en VUELASMART</p>
+            </div>
+            <div class="dataCard">
+                <h3><span class="plusSign">+</span> 40</h3>
+                <h2>DESTINOS</h2>
+                <p>En todo el país</p>
+            </div>
+        </section>
     </main>
 
-    <footer>
-        <ul class="importantInformation">
-            <li class="information"><a href="#">Protección de Datos Personales</a></li>
-            <li class="separation">|</li>
-            <li class="information"><a href="#">Política de Privacidad</a></li>
-        </ul>
-
-        <p><br>&copy; 2024 VuelaSmart. Todos los derechos reservados.</p>
+    <footer class="footer">
+        <div class="footerSection">
+            <img src="./images/header/logo.png" alt="VUELASMART" width="40%" height="40%">
+            <div class="socialNetworks">
+                <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin"></i></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></i></a>
+            </div>
+        </div>
+        <div class="footerSection">
+            <p><i class="fa-solid fa-envelope"></i> Contacto: <a
+                    href="mailto:info@vuelasmart.com">info@vuelasmart.com</a>
+            </p>
+        </div>
+        <div class="footerSection">
+            <a href="./index.html">INICIO</a>
+            <a href="#">PROTECCIÓN DE DATOS PERSONALES</a>
+            <a href="#">POLÍTICA DE PRIVACIDAD</a>
+        </div>
     </footer>
-<script src="./js/main.js"></script>
 </body>
+
+<script src="./js/maissn.js"></script>
+<!-- ----Bootstrap---- -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </html>

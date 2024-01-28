@@ -1,0 +1,30 @@
+.dataCard {
+	flex-basis: 300px;
+	padding: 20px;
+	background-color: $background-color_1;
+	border-radius: 10px;
+	margin: 10px;
+
+	h3 {
+		font-size: 54px;
+		margin-top: 20px;
+		color: $color_1;
+	}
+
+	h2 {
+		font-size: 30px;
+		margin-top: 10px;
+		color: $color_3;
+		margin-bottom: 20px;
+	}
+	
+	p {
+		font-size: 24px;
+		font-weight: bold;
+	}
+
+    .plusSign {
+        color: $color_3;
+    }
+}
+
