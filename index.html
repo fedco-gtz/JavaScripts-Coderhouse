@@ -10,7 +10,8 @@
         content="Descubre la belleza de Argentina con nuestros pasajes de avión. Explora destinos espectaculares, desde las majestuosas cataratas de Iguazú hasta la vibrante ciudad de Buenos Aires.
         Encuentra las mejores ofertas en vuelos y prepara tu próxima aventura con comodidad y confianza. ¡Reserva ahora y deja que tus sueños de viaje despeguen con nosotros!">
     <!-- <Meta KEYWORDS> -->
-    <meta name="keywords" content="pasajes de avión, vuelos en Argentina, ofertas de vuelos, destinos turísticos, viajar por Argentina, boletos de avión, reservas de vuelos">
+    <meta name="keywords"
+        content="pasajes de avión, vuelos en Argentina, ofertas de vuelos, destinos turísticos, viajar por Argentina, boletos de avión, reservas de vuelos">
     <!-- ----Styles---- -->
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -48,75 +49,78 @@
             <h1>BIENVENIDO A VUELASMART</h1>
             <p><b>Vola sin límites</b> por Argentina</p>
         </div>
-
+        <div id="countdown"></div>
         <section class="services">
             <h2>VUELOS</h2>
             <div class="container mt-5">
-                <form>
-                    <div class="formRow">
+                <form action="/procesar_compra.php" method="post">
+                    <div class="form-row">
                         <div class="form-group col-md-12">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio">
-                                <label class="form-check-label"><b>Ida</b></label>
+                                <input class="form-check-input" type="radio" name="tipo_vuelo" id="ida" value="ida"
+                                    required checked>
+                                <label class="form-check-label" for="ida">Ida</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio">
-                                <label class="form-check-label"><b>Ida y Vuelta</b></label>
+                                <input class="form-check-input" type="radio" name="tipo_vuelo" id="ida_vuelta"
+                                    value="ida_vuelta" required>
+                                <label class="form-check-label" for="ida_vuelta">Ida y Vuelta</label>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <label><b>Salgo de:</b></label>
-                            <input type="text" class="form-control">
+                            <label for="origen">Origen:</label>
+                            <input type="text" class="form-control" id="origen" name="origen" required>
                         </div>
 
                         <div class="form-group col-md-4">
-                            <label><b>Voy a:</b></label>
-                            <input type="text" class="form-control">
+                            <label for="destino">Destino:</label>
+                            <input type="text" class="form-control" id="destino" name="destino" required>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <label><b>Salida:</b></label>
-                            <input type="date" class="form-control">
+                            <label for="fecha">Fecha de Viaje:</label>
+                            <input type="date" class="form-control" id="fecha" name="fecha" required>
                         </div>
 
-                        <div class="form-group col-md-4">
-                            <label><b>Regreso:</b></label>
-                            <input type="date" class="form-control">
+                        <div class="form-group col-md-4" id="fechaRegresoRow" style="display: none;">
+                            <label for="fecha_regreso">Fecha de Regreso:</label>
+                            <input type="date" class="form-control" id="fecha_regreso" name="fecha_regreso">
                         </div>
 
                         <div class="form-group col-md-4 align-items-center d-flex mt-4">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox">
-                                <label class="form-check-label"><b>No decidí la fecha del viaje</b></label>
+                            <div class="form-check" id="checkboxNoFechaRow">
+                                <input class="form-check-input" type="checkbox" id="no_fecha" name="no_fecha">
+                                <label class="form-check-label" for="no_fecha">No decidí la fecha del viaje</label>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <label><b>Clase:</b></label>
-                            <select class="form-control">
-                                <option>Económica</option>
-                                <option>Premium</option>
-                                <option>Business</option>
-                                <option>Primera</option>
+                            <label for="clase">Clase:</label>
+                            <select id="clase" class="form-control" name="clase">
+                                <option value="economica">Económica</option>
+                                <option value="Premium">Premium</option>
+                                <option value="Business">Business</option>
+                                <option value="primera">Primera</option>
                             </select>
                         </div>
 
                         <div class="form-group col-md-4">
-                            <label><b>Personas:</b></label>
-                            <input type="number" class="form-control">
+                            <label for="cantidad_personas">Cantidad de Personas:</label>
+                            <input type="number" class="form-control" id="cantidad_personas" name="cantidad_personas"
+                                min="1" required>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-12">
-                            <button type="submit" class="btn btn-primary"><b>BUSCAR</b></button>
+                            <button type="submit" class="btn btn-primary">BUSCAR</button>
                         </div>
                     </div>
                 </form>
@@ -145,7 +149,7 @@
             <img src="./images/header/logo.png" alt="VUELASMART" width="40%" height="40%">
             <div class="socialNetworks">
                 <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
-                <a href="#"><i class="fa-brands fa-linkedin"></i></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></i></a>
                 <a href="#"><i class="fa-brands fa-instagram"></i></i></a>
             </div>
         </div>
@@ -163,6 +167,8 @@
 </body>
 
 <script src="./js/main.js"></script>
+<script src="./js/promotions.js"></script>
+<script src="./js/form.js"></script>
 <!-- ----Bootstrap---- -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>

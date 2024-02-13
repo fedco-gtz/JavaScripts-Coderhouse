@@ -193,4 +193,17 @@ li:hover #submenu {
   transform: translateX(-186px) !important;
 }
 
+#countdown {
+  display: none;
+}
+
+.show {
+  display: block !important;
+  background-color: rgba(20, 20, 20, 0.95);
+  color: #ffffff;
+  padding: 3px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
 /*# sourceMappingURL=styles.css.map */
