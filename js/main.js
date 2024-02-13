@@ -1,20 +1,9 @@
-// -----------------------08/02/2024----------------------- 
-// | Segunda pre entrega: Estructura, variables y objetos |
-// -------------------------------------------------------- 
+// |-----08/02/2024------| 
+// | Tercera pre entrega |
+// |---------------------| 
 
-// ---------------CONSIDERACIONES IMPORTANTES-------------- 
-// | Tener en cuenta que tanto para tarjeta de credito    |
-// | como para tarejta de debito lo siguiente:            |
-// | 1) Para VISA o MASTERCARD, la longitud de número de  |
-// | tarjeta es de 16 digitos; y para AMERICAN EXPRESS es |
-// | 15 digitos.                                          |
-// | 2) Para VISA o MASTERCARD, la longitud de número del |
-// | código de seguridad es de 3 digitos; y para AMERICAN |
-// | EXPRESS es de 4 digitos.                             |
-// | 3) En cuanto a la fecha de vencimiento, por el       |
-// | momento no tiene restricciones.                      |
-// -------------------------------------------------------- 
 
+let destino = ["Buenos Aires", "Salta", "La Rioja", "Cordoba", "Misiones", "Mar del Plata", "Santa Fe"];
 
 class Vuelo {
     // Origen del vuelo 
@@ -37,28 +26,6 @@ class Vuelo {
         PREMIUM: 0.30,
         BUSINESS: 0.45,
         PRIMERA: 0.60
-    };
-
-    // Porcentajes a cobrar de interés por pago con tarjeta de crédito, teniendo en cuenta el emisor de la misma
-    static porcentajesInteresTarjetaCredito = {
-        VISA: {
-            3: 0,
-            6: 0,
-            9: 40,
-            12: 110
-        },
-        MASTERCARD: {
-            3: 0,
-            6: 0,
-            9: 0,
-            12: 0
-        },
-        "AMERICAN EXPRESS": {
-            3: 45,
-            6: 45,
-            9: 45,
-            12: 0
-        },
     };
 
     constructor(origen, destino, clase, cantidadPasajeros, esIdaYVuelta, tipoPago) {
@@ -315,28 +282,39 @@ class Vuelo {
 };
 
 // Función que solicita la informacion del vuelo al usuario
-function solicitarInformacionVuelo() {
-    let origen = prompt(`Ingresa el origen de tu viaje (Buenos Aires, Salta o La Rioja)`);
-    let destino = prompt(`Ingresa el destino de tu viaje (Cordoba, Misiones o Mar del Plata)`);
-    let clase = prompt(`Ingresa la clase en la que deseas viajar (Economica, Premium, Business, Primera)`);
-    let cantidadPasajeros = parseInt(prompt(`Ingresa la cantidad de pasajeros`));
-    let esIdaYVuelta = confirm(`¿Es un viaje de ida y vuelta?`);
-    let tipoPago = prompt(`Ingresa el tipo de pago (Tarjeta Debito o Tarjeta Credito)`);
+document.addEventListener('DOMContentLoaded', function () {
+    const formulario = document.getElementById('formularioVuelo');
 
-    return { origen, destino, clase, cantidadPasajeros, esIdaYVuelta, tipoPago };
-};
+    formulario.addEventListener('submit', function (event) {
+        event.preventDefault();
 
-// Validación de la información que se le solicita al usuario
-try {
-    const datosVuelo = solicitarInformacionVuelo();
-    let vuelo = new Vuelo(...Object.values(datosVuelo));
+        function solicitarInformacionVuelo() {
+            let origen = document.getElementById('origenInput').value;
+            let destino = document.getElementById('destinoInput').value;
+            let fechaSalida = document.getElementById('fecha').value;
+            let fechaRegreso = '';
+            let clase = document.getElementById('clase').value;
+            let cantidadPasajeros = document.getElementById('cantidad_personas').value;
+            let tipoPago = prompt(`Ingresa el tipo de pago (Tarjeta Debito o Tarjeta Credito)`);
+            let esIdaYVueltaRadio = document.getElementById('ida_vuelta');
+            let esIdaYVuelta = esIdaYVueltaRadio.checked;
+            if (esIdaYVuelta) {
+                fechaRegreso = document.getElementById('fecha_regreso').value;
+            };
+            return { origen, destino, clase, cantidadPasajeros, esIdaYVuelta, tipoPago, fechaSalida, fechaRegreso };
+        };
 
-    if (confirm("¿Deseas confirmar y procesar el pago?")) {
-        vuelo.procesarPago();
-    } else {
-        console.log("Pago cancelado por el usuario.");
-    }
-} catch (error) {
-    console.error(error.message);
-};
+        try {
+            const datosVuelo = solicitarInformacionVuelo();
+            let vuelo = new Vuelo(...Object.values(datosVuelo));
 
+            if (confirm("¿Deseas confirmar y procesar el pago?")) {
+                vuelo.procesarPago();
+            } else {
+                console.log("Pago cancelado por el usuario.");
+            }
+        } catch (error) {
+            console.error(error.message);
+        };
+    });
+});

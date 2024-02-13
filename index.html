@@ -35,7 +35,7 @@
                 <li><a href="./index.html"><b>INICIO</b></a></li>
                 <li><a><b>SERVICIOS</b></a>
                     <ul id="submenu">
-                        <li><a href="#">VER RESERVA</a></li>
+                        <li><a href="./pages/booking.html">VER RESERVA</a></li>
                     </ul>
                 </li>
                 <li><a href="./pages/pay.html" class="pagar"><b>PAGAR</b></a></li>
@@ -52,7 +52,7 @@
         <section class="services">
             <h2>VUELOS</h2>
             <div class="container mt-5">
-                <form action="/procesar_compra.php" method="post">
+                <form id="formularioVuelo" action="/procesar_compra.php" method="post">
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             <div class="form-check form-check-inline">
@@ -71,12 +71,12 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="origen">Origen:</label>
-                            <input type="text" class="form-control" id="origen" name="origen" required>
+                            <input type="text" class="form-control" id="origenInput" name="origen" required>
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="destino">Destino:</label>
-                            <input type="text" class="form-control" id="destino" name="destino" required>
+                            <input type="text" class="form-control" id="destinoInput" name="destino" required>
                         </div>
                     </div>
 
@@ -136,9 +136,9 @@
                 <p>Confiaron en VUELASMART</p>
             </div>
             <div class="dataCard">
-                <h3><span class="plusSign">+</span> 40</h3>
+                <h3 id="cantidadElementos"></h3>
                 <h2>DESTINOS</h2>
-                <p>En todo el país</p>
+                <p>En toda <br> ARGENTINA</p>
             </div>
         </section>
     </main>
@@ -165,9 +165,8 @@
     </footer>
 </body>
 
-<script src="./js/main.js"></script>
-<script src="./js/promotions.js"></script>
-<script src="./js/form.js"></script>
+<script src="./js/main.js"></script> 
+<script src="./js/extra.js"></script>
 <!-- ----Bootstrap---- -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>

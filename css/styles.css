@@ -158,6 +158,25 @@ li:hover #submenu {
   margin-right: 10px;
 }
 
+.pagar {
+  background-color: rgb(0, 31, 85);
+  color: rgb(242, 242, 242);
+  border-style: none;
+  padding: 5px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 24px;
+}
+
+.pagar:hover {
+  background-color: rgb(242, 242, 242);
+  color: rgb(0, 31, 85);
+  border-style: solid;
+  border-color: rgb(255, 1, 43);
+  text-transform: uppercase;
+}
+
 .dataCard {
   flex-basis: 300px;
   padding: 20px;
