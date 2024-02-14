@@ -119,11 +119,15 @@
 
                     <div class="form-row">
                         <div class="form-group col-md-12">
-                            <button type="submit" class="btn btn-primary">BUSCAR</button>
+                            <button type="button" class="btn btn-primary" onclick="buscarVuelos()">BUSCAR</button>
                         </div>
                     </div>
                 </form>
             </div>
+        </section>
+        <section class="services" id="resultados">
+            <h2>RESULTADOS DE LA BÚSQUEDA</h2>
+            <div id="lista-vuelos" class="card-container"></div>
         </section>
 
         <section class="services">
@@ -167,6 +171,7 @@
 
 <script src="./js/main.js"></script> 
 <script src="./js/extra.js"></script>
+<script src="./js/tarjetasbusqueda.js"></script>
 <!-- ----Bootstrap---- -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>

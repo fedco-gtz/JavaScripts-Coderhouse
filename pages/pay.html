@@ -56,8 +56,8 @@
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="tipo_pago" id="tarjetaDebito" value="tarjetaDebito"
-                                    required checked>
+                                <input class="form-check-input" type="radio" name="tipo_pago" id="tarjetaDebito"
+                                    value="tarjetaDebito" required checked>
                                 <label class="form-check-label" for="tarjetaDebito">Tarjeta de Débito</label>
                             </div>
                             <div class="form-check form-check-inline">
@@ -71,46 +71,57 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="numeroTarjeta">Número de la tarjeta</label>
-                            <input type="text" class="form-control" id="NumeroTarjetaInput" name="NumeroTarjeta" required>
+                            <input type="text" class="form-control" id="NumeroTarjetaInput" name="NumeroTarjeta"
+                                required>
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="codigoSeguridad">Código de Seguridad</label>
-                            <input type="text" class="form-control" id="codigoSeguridadInput" name="codigoSeguridad" required>
+                            <input type="text" class="form-control" id="codigoSeguridadInput" name="codigoSeguridad"
+                                required>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="vencimientoTarjeta">Vencimiento de la tarjeta (MM/AA)</label>
-                            <input type="text" class="form-control" id="vencimientoTarjetaInput" name="vencimientoTarjeta" pattern="^(0[1-9]|1[0-2])\/?([0-9]{2})$"required>
+                            <input type="text" class="form-control" id="vencimientoTarjetaInput"
+                                name="vencimientoTarjeta" pattern="^(0[1-9]|1[0-2])\/?([0-9]{2})$" required>
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="nombreTitular">Nombre titular de la tarjeta</label>
-                            <input type="text" class="form-control" id="nombreTitularInput" name="nombreTitular" required>
+                            <input type="text" class="form-control" id="nombreTitularInput" name="nombreTitular"
+                                required>
                         </div>
                     </div>
 
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label for="cuotasCredito">Cuotas</label>
-                            <select id="cuotasCreditoOption" class="form-control" name="cuotasCredito">
-                                <option value="tresCuotas">3 cuotas</option>
-                                <option value="seisCuotas">6 cuotas</option>
-                                <option value="nueveCuotas">9 cuotas</option>
-                                <option value="doceCuotas">12 cuotas</option>
-                            </select>
-                        </div>
-
+                    <div class="form-group col-md-4" id="tarjetaCreditoRow" style="display: none;">
+                        <label for="cuotasCredito">Cuotas</label>
+                        <select id="cuotasCreditoOption" class="form-control" name="cuotasCredito">
+                            <option value="tresCuotas">3 cuotas</option>
+                            <option value="seisCuotas">6 cuotas</option>
+                            <option value="nueveCuotas">9 cuotas</option>
+                            <option value="doceCuotas">12 cuotas</option>
+                        </select>
                         <div class="form-group col-md-4 align-items-center d-flex mt-4">
-                            <div class="form-check" id="checkboxNoFechaRow">
-                                <input class="form-check-input" type="checkbox" id="terminosCondiciones" name="terminosCondiciones">
-                                <label class="form-check-label" for="terminosCondiciones">Acepto términos y condiciones</label>
+                            <div class="form-check" id="checkboxTerminos">
+                                <input class="form-check-input" type="checkbox" id="terminosCondiciones"
+                                    name="terminosCondiciones">
+                                <label class="form-check-label" for="terminosCondiciones">Acepto términos y
+                                    condiciones</label>
                             </div>
                         </div>
                     </div>
 
+                    <div class="form-group col-md-4 align-items-center d-flex mt-4">
+                        <div class="form-check" id="checkboxTerminos">
+                            <input class="form-check-input" type="checkbox" id="terminosCondiciones"
+                                name="terminosCondiciones">
+                            <label class="form-check-label" for="terminosCondiciones">Acepto términos y
+                                condiciones</label>
+                        </div>
+                    </div>
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             <button type="submit" class="btn btn-primary">PAGAR</button>
@@ -143,7 +154,8 @@
     </footer>
 </body>
 
-<script src="./js/extra.js"></script>
+<script src="../js/extra.js"></script>
+
 <!-- ----Bootstrap---- -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
