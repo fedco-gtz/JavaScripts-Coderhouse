@@ -1,11 +1,9 @@
 // |--------------------------------------------------|
 // | Código que muestra una promoción los días jueves |
 // |--------------------------------------------------|
-
 function timeLeft() {
     const NOW = new Date(); //Se puede cargar una fecha manual para verificar el código ejemplo "2024-2-8"
     const DAYWEEK = NOW.getDay();
-
     if (DAYWEEK === 4) {
         document.getElementById("countdown").innerHTML = `Aprovechá un <strong>20% OFF</strong> + <strong>12 cuotas sin interés</strong>&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-clock-o"></span> POR TIEMPO LIMITADO <span class="fa fa-clock-o"></span>`;
         document.getElementById("countdown").classList.add("show");
@@ -17,16 +15,13 @@ function timeLeft() {
 // |----------------------------------------------------|
 // | Código que hace dinamico el formulario de busqueda |
 // |----------------------------------------------------|
-
 const TIPOVUELO = document.getElementsByName('tipo_vuelo');
 const FECHAREGRESOROW = document.getElementById('fechaRegresoRow');
 const CHECKBOXNOFECHAROW = document.getElementById('checkboxNoFechaRow');
-
 const actualizarVisibilidad = () => {
     FECHAREGRESOROW.style.display = TIPOVUELO[1].checked ? 'block' : 'none';
     CHECKBOXNOFECHAROW.style.display = TIPOVUELO[1].checked ? 'none' : 'block';
 };
-
 for (let i = 0; i < TIPOVUELO.length; i++) {
     TIPOVUELO[i].addEventListener('change', actualizarVisibilidad);
 };
@@ -40,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const tarjetaCreditoInput = document.getElementById("tarjetaCredito");
     const tarjetaCreditoRow = document.getElementById("tarjetaCreditoRow");
     const checkboxTerminos = document.getElementById("checkboxTerminos");
-
     tarjetaDebitoInput.addEventListener("change", function () {
         tarjetaCreditoRow.style.display = "none";
         checkboxTerminos.style.display = "block";
@@ -52,15 +46,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-
 // |-------------------------------------------------|
 // | Código que hace dinamicas las metricas del HTML |
 // |-------------------------------------------------|
-
 let cantidadElementos = destino.length;
-
 document.getElementById("cantidadElementos").innerHTML = cantidadElementos;
-
 timeLeft();
 actualizarVisibilidad();
 
