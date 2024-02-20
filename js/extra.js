@@ -27,7 +27,7 @@ for (let i = 0; i < TIPOVUELO.length; i++) {
 };
 
 // |----------------------------------------------------|
-// | Código que hace dinamico el formulario de pago     |
+// |   Código que hace dinamico el formulario de pago   |
 // |----------------------------------------------------|
 
 document.addEventListener("DOMContentLoaded", function () {
