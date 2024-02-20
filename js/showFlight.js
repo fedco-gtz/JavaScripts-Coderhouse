@@ -1,27 +1,28 @@
+// |--------------------------------------------------|
+// |     Código que muestra el detalle del vuelo      |
+// |--------------------------------------------------|
 document.addEventListener("DOMContentLoaded", () => {
-    const datosSeleccionadosContainer = document.getElementById("datosSeleccionadosContainer");
+    const SELECTED_DATA_CONTAINER = document.getElementById("selectedDataContainer");
 
-    // Obtener datos almacenados en localStorage
-    const datosSeleccionadosString = localStorage.getItem("datosSeleccionados");
-    if (datosSeleccionadosString) {
-        const datosSeleccionados = JSON.parse(datosSeleccionadosString);
+    const DATOS_SELECCIONADOS_STRING = localStorage.getItem("datosSeleccionados");
+    if (DATOS_SELECCIONADOS_STRING) {
+        const DATOS_SELECCIONADOS = JSON.parse(DATOS_SELECCIONADOS_STRING);
 
-        // Crear elementos HTML para mostrar los datos
-        const datosList = document.createElement("ul");
-        datosList.innerHTML = `
-            <li><strong>Origen:</strong> ${datosSeleccionados.origen}</li>
-            <li><strong>Destino:</strong> ${datosSeleccionados.destino}</li>
-            <li><strong>Fecha de Viaje:</strong> ${datosSeleccionados.fecha}</li>
-            <li><strong>Fecha de Regreso:</strong> ${datosSeleccionados.fechaRegreso}</li>
-            <li><strong>Clase:</strong> ${datosSeleccionados.clase}</li>
-            <li><strong>Cantidad de Personas:</strong> ${datosSeleccionados.cantidadPersonas}</li>
-            <li><strong>Incluye Equipaje:</strong> ${datosSeleccionados.incluyeEquipaje}</li>
+        const LOGO_AEROLINEA = document.createElement("img");
+        LOGO_AEROLINEA.src = `https://via.placeholder.com/50x50?text=${DATOS_SELECCIONADOS.origen}`;
+        LOGO_AEROLINEA.alt = DATOS_SELECCIONADOS.origen;
+        LOGO_AEROLINEA.classList.add("logoAerolinea");
+        SELECTED_DATA_CONTAINER.appendChild(LOGO_AEROLINEA);
+        const DATOS_LIST = document.createElement("ul");
+        DATOS_LIST.innerHTML = `
+            <li><strong>Ida</strong> <br>${DATOS_SELECCIONADOS.fecha}</li>
+            <li><strong>Vuelta</strong> <br>${DATOS_SELECCIONADOS.fechaRegreso}</li>
+            <li><strong>Clase</strong> <br>${DATOS_SELECCIONADOS.clase}</li>
+            <li><strong>Cantidad de Personas</strong> <br>${DATOS_SELECCIONADOS.cantidadPersonas}</li>
+            <li><strong>Precio</strong> <br> ${DATOS_SELECCIONADOS.incluyeEquipaje}</li>
         `;
-
-        // Agregar la lista de datos al contenedor en la página
-        datosSeleccionadosContainer.appendChild(datosList);
+        SELECTED_DATA_CONTAINER.appendChild(DATOS_LIST);
     } else {
-        // Manejar el caso donde no hay datos almacenados
-        datosSeleccionadosContainer.textContent = "No hay datos seleccionados almacenados.";
+        SELECTED_DATA_CONTAINER.textContent = "No hay vuelos seleccionados";
     }
 });

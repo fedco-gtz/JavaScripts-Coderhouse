@@ -2,86 +2,112 @@
 // |  Código que muestra cards de busqueda de vuelos  |
 // |--------------------------------------------------|
 document.addEventListener("DOMContentLoaded", () => {
-    const alertaDiv = document.getElementById("alerta");
+    const ALERTA_DIV = document.getElementById("alerta");
+    const AEROLINEAS_LOGOS = [
+        "https://static.almundo.com/img/airlines/FO-ISO.svg",
+        "https://static.almundo.com/img/airlines/WJ-ISO.svg",
+        "https://static.almundo.com/img/airlines/AR-ISO.svg"
+    ];
 
     document.getElementById("buscarBtn").addEventListener("click", () => {
-        const TIPO_VUELO = document.querySelector('input[name="tipo_vuelo"]:checked').value;
-        const ORIGEN = document.getElementById("origenInput").value;
-        const DESTINO = document.getElementById("destinoInput").value;
-        const FECHA = document.getElementById("fecha").value;
-        const FECHA_REGRESO = document.getElementById("fecha_regreso").value;
-        const CANTIDAD_PERSONAS = document.getElementById("cantidad_personas").value;
+        const TIPO_VUELO = document.querySelector('input[name="tipo_vuelo"]:checked').value.toUpperCase();
+        const ORIGEN = document.getElementById("origenInput").value.toUpperCase();
+        const DESTINO = document.getElementById("destinoInput").value.toUpperCase();
+        const FECHA = document.getElementById("fecha").value.toUpperCase();
+        const FECHA_REGRESO = document.getElementById("fecha_regreso").value.toUpperCase();
+        const CANTIDAD_PERSONAS = document.getElementById("cantidad_personas").value.toUpperCase();
 
         if (!TIPO_VUELO || !ORIGEN || !DESTINO || !FECHA || !CANTIDAD_PERSONAS) {
-            alertaDiv.textContent = "Por favor complete todos los campos del formulario.";
-            alertaDiv.style.display = "block";
+            ALERTA_DIV.textContent = "Por favor complete todos los campos del formulario.";
+            ALERTA_DIV.style.display = "block";
             return;
         };
 
-        alertaDiv.textContent = "";
-        alertaDiv.style.display = "none";
+        ALERTA_DIV.textContent = "";
+        ALERTA_DIV.style.display = "none";
 
-        const numResultados = Math.floor(Math.random() * 5) + 1;
-        const resultadosContainer = document.getElementById("resultadosContainer");
-        resultadosContainer.innerHTML = "";
+        const NUM_RESULTADOS = Math.floor(Math.random() * 5) + 1;
+        const RESULTADOS_CONTAINER = document.getElementById("resultadosContainer");
+        RESULTADOS_CONTAINER.innerHTML = "";
 
-        for (let i = 0; i < numResultados; i++) {
-            const aerolinea = "Aerolínea " + (i + 1);
-            const incluyeEquipaje = Math.random() < 0.5;
+        for (let i = 0; i < NUM_RESULTADOS; i++) {
+            const AEROLINEA_LOGO_INDEX = Math.floor(Math.random() * AEROLINEAS_LOGOS.length);
+            const LOGO_URL = AEROLINEAS_LOGOS[AEROLINEA_LOGO_INDEX];
+            const AEROLINEA = "AEROLÍNEA " + (i + 1);
+            const INCLUYE_EQUIPAJE = Math.random() < 0.5;
+            
+            // Generar hora de vuelo aleatoria
+            const horaVuelo = Math.floor(Math.random() * 24);
+            const minutosVuelo = Math.floor(Math.random() * 60);
+            const horaVueloFormato = `${horaVuelo.toString().padStart(2, '0')}:${minutosVuelo.toString().padStart(2, '0')}`;
 
-            const card = document.createElement("div");
-            card.classList.add("card");
+            // Obtener el día de la semana
+            const diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+            const fechaSeleccionada = new Date(FECHA);
+            const diaSemana = diasSemana[fechaSeleccionada.getDay()];
 
-            const cardBody = document.createElement("div");
-            cardBody.classList.add("card-body");
+            // Formatear la fecha a dd/mm/aaaa
+            const fechaFormateada = `${fechaSeleccionada.getDate().toString().padStart(2, '0')}/${(fechaSeleccionada.getMonth() + 1).toString().padStart(2, '0')}/${fechaSeleccionada.getFullYear()}`;
 
-            const cardTitle = document.createElement("h5");
-            cardTitle.classList.add("card-title");
-            cardTitle.textContent = "Vuelo #" + (i + 1);
+            const CARD = document.createElement("div");
+            CARD.classList.add("card");
 
-            const cardText = document.createElement("p");
-            cardText.classList.add("card-text");
-            cardText.innerHTML = `
+            const CARD_BODY = document.createElement("div");
+            CARD_BODY.classList.add("card-body");
+
+            const CARD_TITLE = document.createElement("h5");
+            CARD_TITLE.classList.add("card-title");
+
+            const CARD_TEXT = document.createElement("p");
+            CARD_TEXT.classList.add("card-text");
+            CARD_TEXT.innerHTML = `
                 <strong>Origen:</strong> ${ORIGEN}<br>
                 <strong>Destino:</strong> ${DESTINO}<br>
-                <strong>Fecha de Viaje:</strong> ${FECHA}<br>
-                <strong>Fecha de Regreso:</strong> ${FECHA_REGRESO || 'N/A'}<br>
-                <strong>Clase:</strong> ${document.getElementById("clase").value}<br>
+                <strong>Fecha de Viaje:</strong> ${diaSemana.toUpperCase()}, ${fechaFormateada}<br>
+                ${TIPO_VUELO === "IDA-VUELTA" ? `<strong>Fecha de Regreso:</strong> ${FECHA_REGRESO || 'N/A'}<br>` : ''}
+                <strong>Hora de Vuelo:</strong> ${horaVueloFormato}<br>
+                <strong>Clase:</strong> ${document.getElementById("clase").value.toUpperCase()}<br>
                 <strong>Cantidad de Personas:</strong> ${CANTIDAD_PERSONAS}<br>
-                <strong>Incluye Equipaje:</strong> ${incluyeEquipaje ? "Sí" : "No"}
+                <strong>Incluye Equipaje:</strong> ${INCLUYE_EQUIPAJE ? "SÍ" : "NO"}
             `;
 
-            const seleccionarBtn = document.createElement("button");
-            seleccionarBtn.classList.add("btn", "btn-primary", "seleccionarBtn");
-            seleccionarBtn.textContent = "SELECCIONAR";
+            const SELECCIONAR_BTN = document.createElement("button");
+            SELECCIONAR_BTN.classList.add("btn", "btn-primary", "seleccionarBtn");
+            SELECCIONAR_BTN.textContent = "SELECCIONAR";
 
-            seleccionarBtn.addEventListener("click", () => {
-                const datosSeleccionados = {
+            SELECCIONAR_BTN.addEventListener("click", () => {
+                const DATOS_SELECCIONADOS = {
                     origen: ORIGEN,
                     destino: DESTINO,
-                    fecha: FECHA,
+                    fecha: fechaFormateada,
                     fechaRegreso: FECHA_REGRESO || 'N/A',
-                    clase: document.getElementById("clase").value,
+                    horaVuelo: horaVueloFormato,
+                    clase: document.getElementById("clase").value.toUpperCase(),
                     cantidadPersonas: CANTIDAD_PERSONAS,
-                    incluyeEquipaje: incluyeEquipaje ? "Sí" : "No"
+                    incluyeEquipaje: INCLUYE_EQUIPAJE ? "SÍ" : "NO"
                 };
 
-                localStorage.setItem("datosSeleccionados", JSON.stringify(datosSeleccionados));
+                localStorage.setItem("datosSeleccionados", JSON.stringify(DATOS_SELECCIONADOS));
                 alert("Datos seleccionados almacenados en localStorage.");
             });
 
-            const logoAerolinea = document.createElement("img");
-            logoAerolinea.src = `https://via.placeholder.com/50x50?text=${aerolinea}`;
-            logoAerolinea.alt = aerolinea;
-            logoAerolinea.classList.add("logoAerolinea");
+            const LOGO_AEROLINEA = document.createElement("img");
+            LOGO_AEROLINEA.src = LOGO_URL;
+            LOGO_AEROLINEA.alt = AEROLINEA;
+            LOGO_AEROLINEA.classList.add("logoAerolinea");
+            LOGO_AEROLINEA.style.width = "60px";
+            LOGO_AEROLINEA.style.height = "60px";
 
-            cardBody.appendChild(logoAerolinea);
-            cardBody.appendChild(cardTitle);
-            cardBody.appendChild(cardText);
-            cardBody.appendChild(seleccionarBtn);
-            card.appendChild(cardBody);
-            resultadosContainer.appendChild(card);
+            CARD_BODY.appendChild(LOGO_AEROLINEA);
+            CARD_BODY.appendChild(CARD_TITLE);
+            CARD_BODY.appendChild(CARD_TEXT);
+            CARD_BODY.appendChild(SELECCIONAR_BTN);
+            CARD.appendChild(CARD_BODY);
+            RESULTADOS_CONTAINER.appendChild(CARD);
         };
     });
 });
+
+
+
 

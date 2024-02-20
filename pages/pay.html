@@ -50,7 +50,16 @@
         </div>
         <section class="services">
             <h2>INFORMACIÓN DEL VUELO</h2>
-            <div id="datosSeleccionadosContainer"></div>
+            <div class="flightInfo" id="selectedDataContainer"></div>
+            <a href="#" id="mostrarPopup">Detalle de la tarifa</a>
+            <div id="popup" class="popup">
+                <div class="popupContent">
+                  <h2>DETALLLE DE LA TARIFA</h2>
+                  <p>Precio base: $100</p>
+                  <p>Impuestos: $10</p>
+                  <p>Total: $110</p>
+                </div>
+              </div>
         </section>
         <section class="services">
             <h2>PAGO</h2>
@@ -158,6 +167,7 @@
 </body>
 
 <script src="../js/showFlight.js"></script>
+<script src="../js/rateDetail.js"></script>
 <!-- ----Bootstrap---- -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
