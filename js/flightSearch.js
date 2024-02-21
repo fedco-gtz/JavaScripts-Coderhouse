@@ -23,6 +23,12 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         };
 
+        if (ORIGEN === DESTINO) {
+            ALERTA_DIV.textContent = "El lugar de origen no puede ser igual al lugar de destino."
+            ALERTA_DIV.style.display = "block";
+            return;
+        };
+
         ALERTA_DIV.textContent = "";
         ALERTA_DIV.style.display = "none";
 
@@ -91,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 };
 
                 localStorage.setItem("datosSeleccionados", JSON.stringify(DATOS_SELECCIONADOS));
-                alert("Datos seleccionados almacenados en localStorage.");
+                window.location.href = "./pages/pay.html";;
             });
 
             const LOGO_AEROLINEA = document.createElement("img");

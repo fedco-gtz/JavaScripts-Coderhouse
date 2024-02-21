@@ -49,9 +49,9 @@ document.addEventListener("DOMContentLoaded", function () {
 // |-------------------------------------------------|
 // | Código que hace dinamicas las metricas del HTML |
 // |-------------------------------------------------|
-// let cantidadElementos = destino.length;
-// document.getElementById("cantidadElementos").innerHTML = cantidadElementos;
-// timeLeft();
-// actualizarVisibilidad();
+let cantidadElementos = destino.length;
+document.getElementById("cantidadElementos").innerHTML = cantidadElementos;
+timeLeft();
+actualizarVisibilidad();
 
 
