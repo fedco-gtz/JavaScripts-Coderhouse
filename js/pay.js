@@ -1,3 +1,4 @@
+/*
 class Pago {
     constructor(vuelo) {
         this.tipoPago = vuelo.tipoPago.toUpperCase();
@@ -108,3 +109,41 @@ class Pago {
 }
 
 module.exports = Pago;
+*/
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Obtener el formulario
+        var form = document.getElementById('formularioVuelo');
+
+        // Obtener el checkbox de "Acepto términos y condiciones"
+        var checkboxTerminos = document.getElementById('terminosCondiciones');
+
+        // Escuchar el evento click del checkbox
+        checkboxTerminos.addEventListener('click', function() {
+            // Verificar si el checkbox está marcado
+            if (checkboxTerminos.checked) {
+                // Obtener los valores de los campos del formulario
+                var tipoPago = form.querySelector('input[name="tipo_pago"]:checked').value;
+                var numeroTarjeta = form.querySelector('#NumeroTarjetaInput').value;
+                var codigoSeguridad = form.querySelector('#codigoSeguridadInput').value;
+                var vencimientoTarjeta = form.querySelector('#vencimientoTarjetaInput').value;
+                var nombreTitular = form.querySelector('#nombreTitularInput').value;
+
+                // Crear un objeto para almacenar los datos del formulario
+                var formData = {
+                    tipoPago: tipoPago,
+                    numeroTarjeta: numeroTarjeta,
+                    codigoSeguridad: codigoSeguridad,
+                    vencimientoTarjeta: vencimientoTarjeta,
+                    nombreTitular: nombreTitular
+                };
+
+                // Almacenar los datos del formulario en sessionStorage
+                sessionStorage.setItem('formData', JSON.stringify(formData));
+
+                alert('Datos del formulario almacenados en sessionStorage.');
+            }
+        });
+    });
+
+

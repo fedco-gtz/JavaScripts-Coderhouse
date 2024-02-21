@@ -13,8 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const TIPO_VUELO = document.querySelector('input[name="tipo_vuelo"]:checked').value.toUpperCase();
         const ORIGEN = document.getElementById("origenInput").value.toUpperCase();
         const DESTINO = document.getElementById("destinoInput").value.toUpperCase();
-        const FECHA = document.getElementById("fecha").value.toUpperCase();
-        const FECHA_REGRESO = document.getElementById("fecha_regreso").value.toUpperCase();
+        const FECHA = document.getElementById("fecha").value;
+        const FECHA_REGRESO = document.getElementById("fecha_regreso").value;
         const CANTIDAD_PERSONAS = document.getElementById("cantidad_personas").value.toUpperCase();
 
         if (!TIPO_VUELO || !ORIGEN || !DESTINO || !FECHA || !CANTIDAD_PERSONAS) {
@@ -36,21 +36,22 @@ document.addEventListener("DOMContentLoaded", () => {
             const AEROLINEA = "AEROLÍNEA " + (i + 1);
             const INCLUYE_EQUIPAJE = Math.random() < 0.5;
             
-            // Generar hora de vuelo aleatoria
-            const horaVuelo = Math.floor(Math.random() * 24);
-            const minutosVuelo = Math.floor(Math.random() * 60);
-            const horaVueloFormato = `${horaVuelo.toString().padStart(2, '0')}:${minutosVuelo.toString().padStart(2, '0')}`;
+            const HORA_VUELO = Math.floor(Math.random() * 24);
+            const MINUTOS_VUELO = Math.floor(Math.random() * 60);
+            const HORA_VUELO_FORMATO = `${HORA_VUELO.toString().padStart(2, '0')}:${MINUTOS_VUELO.toString().padStart(2, '0')}`;
 
-            // Obtener el día de la semana
-            const diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
-            const fechaSeleccionada = new Date(FECHA);
-            const diaSemana = diasSemana[fechaSeleccionada.getDay()];
+            const DIAS_SEMANA = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+            const FECHA_SELECCIONADA = new Date(FECHA);
+            const DIA_SEMANA = DIAS_SEMANA[FECHA_SELECCIONADA.getDay()];
 
-            // Formatear la fecha a dd/mm/aaaa
-            const fechaFormateada = `${fechaSeleccionada.getDate().toString().padStart(2, '0')}/${(fechaSeleccionada.getMonth() + 1).toString().padStart(2, '0')}/${fechaSeleccionada.getFullYear()}`;
+            const FECHA_FORMATEADA = `${FECHA_SELECCIONADA.getDate().toString().padStart(2, '0')}/${(FECHA_SELECCIONADA.getMonth() + 1).toString().padStart(2, '0')}/${FECHA_SELECCIONADA.getFullYear()}`;
+
+            const FECHA_REGRESO_SELECCIONADA = new Date(FECHA_REGRESO);
+            const DIA_REGRESO_SEMANA = DIAS_SEMANA[FECHA_REGRESO_SELECCIONADA.getDay()];
+            const FECHA_REGRESO_FORMATEADA = FECHA_REGRESO ? `${FECHA_REGRESO_SELECCIONADA.getDate().toString().padStart(2, '0')}/${(FECHA_REGRESO_SELECCIONADA.getMonth() + 1).toString().padStart(2, '0')}/${FECHA_REGRESO_SELECCIONADA.getFullYear()}` : 'N/A';
 
             const CARD = document.createElement("div");
-            CARD.classList.add("card");
+            CARD.classList.add("resultCard");
 
             const CARD_BODY = document.createElement("div");
             CARD_BODY.classList.add("card-body");
@@ -59,17 +60,18 @@ document.addEventListener("DOMContentLoaded", () => {
             CARD_TITLE.classList.add("card-title");
 
             const CARD_TEXT = document.createElement("p");
-            CARD_TEXT.classList.add("card-text");
+            CARD_TEXT.classList.add("cardText");
             CARD_TEXT.innerHTML = `
-                <strong>Origen:</strong> ${ORIGEN}<br>
-                <strong>Destino:</strong> ${DESTINO}<br>
-                <strong>Fecha de Viaje:</strong> ${diaSemana.toUpperCase()}, ${fechaFormateada}<br>
-                ${TIPO_VUELO === "IDA-VUELTA" ? `<strong>Fecha de Regreso:</strong> ${FECHA_REGRESO || 'N/A'}<br>` : ''}
-                <strong>Hora de Vuelo:</strong> ${horaVueloFormato}<br>
-                <strong>Clase:</strong> ${document.getElementById("clase").value.toUpperCase()}<br>
-                <strong>Cantidad de Personas:</strong> ${CANTIDAD_PERSONAS}<br>
-                <strong>Incluye Equipaje:</strong> ${INCLUYE_EQUIPAJE ? "SÍ" : "NO"}
-            `;
+            <ul>
+            <li><strong>Origen</strong> <br> ${ORIGEN}</li>
+            <li><strong>Destino</strong> <br> ${DESTINO}</li>
+            <li><strong>Fecha de Viaje</strong> <br> ${DIA_SEMANA.toUpperCase()}, ${FECHA_FORMATEADA}</li>
+            <li>${TIPO_VUELO === "IDA_VUELTA" ? `<strong>Fecha de Regreso</strong> <br> ${DIA_REGRESO_SEMANA.toUpperCase()}, ${FECHA_REGRESO_FORMATEADA}<br>` : ''}</li>
+            <li><strong>Hora de Vuelo</strong> <br> ${HORA_VUELO_FORMATO}</li>
+            <li><strong>Clase</strong> <br> ${document.getElementById("clase").value.toUpperCase()}</li>
+            <li><strong>Cantidad de Personas</strong> <br> ${CANTIDAD_PERSONAS}</li>
+            <li><strong>Incluye Equipaje</strong> <br> ${INCLUYE_EQUIPAJE ? "SÍ" : "NO"}</li>
+            </ul>`;
 
             const SELECCIONAR_BTN = document.createElement("button");
             SELECCIONAR_BTN.classList.add("btn", "btn-primary", "seleccionarBtn");
@@ -79,9 +81,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 const DATOS_SELECCIONADOS = {
                     origen: ORIGEN,
                     destino: DESTINO,
-                    fecha: fechaFormateada,
-                    fechaRegreso: FECHA_REGRESO || 'N/A',
-                    horaVuelo: horaVueloFormato,
+                    fecha: FECHA_FORMATEADA,
+                    fechaRegreso: FECHA_REGRESO_FORMATEADA,
+                    tipoVuelo: TIPO_VUELO,
+                    horaVuelo: HORA_VUELO_FORMATO,
                     clase: document.getElementById("clase").value.toUpperCase(),
                     cantidadPersonas: CANTIDAD_PERSONAS,
                     incluyeEquipaje: INCLUYE_EQUIPAJE ? "SÍ" : "NO"
@@ -97,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
             LOGO_AEROLINEA.classList.add("logoAerolinea");
             LOGO_AEROLINEA.style.width = "60px";
             LOGO_AEROLINEA.style.height = "60px";
-
+            
             CARD_BODY.appendChild(LOGO_AEROLINEA);
             CARD_BODY.appendChild(CARD_TITLE);
             CARD_BODY.appendChild(CARD_TEXT);
@@ -107,7 +110,5 @@ document.addEventListener("DOMContentLoaded", () => {
         };
     });
 });
-
-
 
 

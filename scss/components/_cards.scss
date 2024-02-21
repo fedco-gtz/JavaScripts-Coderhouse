@@ -9,24 +9,24 @@
 		font-size: 54px;
 		margin-top: 20px;
 		color: $color_1;
-	};
+	}
 
 	h2 {
 		font-size: 30px;
 		margin-top: 10px;
 		color: $color_3;
 		margin-bottom: 20px;
-	};
-	
+	}
+
 	p {
 		font-size: 24px;
 		font-weight: bold;
-	};
+	}
 
-    .plusSign {
-        color: $color_3;
-    };
-};
+	.plusSign {
+		color: $color_3;
+	}
+}
 
 .flightInfo {
 	display: flex;
@@ -39,15 +39,39 @@
 	box-sizing: border-box;
 	margin-left: auto;
 	margin-right: auto;
+
 	ul {
 		display: flex;
 		margin: 0 auto;
 		flex-wrap: wrap;
 		list-style: none;
 		padding: 0;
+
 		li {
 			margin-right: 20px;
-		};
-	};
-};
+		}
+	}
+}
 
+.resultCard {
+	border: 2px solid $color_1;
+	border-radius: 20px;
+	width: 100%;
+	margin-left: -17%;
+	margin-top: 10px;
+
+	.cardText ul {
+		display: flex;
+		list-style-type: none;
+		justify-content: center;
+
+		li {
+			margin-right: 20px;
+		}
+	}
+}
+
+
+.seleccionarBtn {
+	margin-left: 35% !important;
+}

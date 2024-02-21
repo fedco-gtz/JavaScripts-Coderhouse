@@ -90,12 +90,12 @@ li:hover #submenu {
 .mainTitle h1 {
   color: rgb(0, 31, 85);
   font-size: 54px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.85);
   margin-top: 90px;
 }
 .mainTitle p {
   color: rgb(255, 1, 43);
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.9);
   font-size: 36px;
   margin-top: 10px;
   padding-top: 10px;
@@ -231,6 +231,26 @@ main {
 }
 .flightInfo ul li {
   margin-right: 20px;
+}
+
+.resultCard {
+  border: 2px solid rgb(0, 31, 85);
+  border-radius: 20px;
+  width: 100%;
+  margin-left: -17%;
+  margin-top: 10px;
+}
+.resultCard .cardText ul {
+  display: flex;
+  list-style-type: none;
+  justify-content: center;
+}
+.resultCard .cardText ul li {
+  margin-right: 20px;
+}
+
+.seleccionarBtn {
+  margin-left: 35% !important;
 }
 
 .container {
