@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const DATOS_SELECCIONADOS_STRING = localStorage.getItem("datosSeleccionados");
     if (DATOS_SELECCIONADOS_STRING) {
         const DATOS_SELECCIONADOS = JSON.parse(DATOS_SELECCIONADOS_STRING);
-
         const DATOS_LIST = document.createElement("ul");
         DATOS_LIST.innerHTML = `
             <li><strong>Origen</strong> <br>${DATOS_SELECCIONADOS.origen}</li>
@@ -19,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <li><strong>Clase</strong> <br>${DATOS_SELECCIONADOS.clase}</li>
             <li><strong>Pasajeros</strong> <br>${DATOS_SELECCIONADOS.cantidadPersonas}</li>
             <li>|<br>|</li>
-            <li><strong>Precio total <br>$ ${VUELO.totalIda + VUELO.impuestosTotal}</strong></li>
+            <li><strong>TARIFA TOTAL <br>$ ${VUELO.totalIda + VUELO.impuestosTotal}</strong></li>
         `;
         SELECTED_DATA_CONTAINER.appendChild(DATOS_LIST);
     } else {

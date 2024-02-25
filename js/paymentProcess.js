@@ -1,3 +1,6 @@
+let codigosReserva = [];
+console.log(codigosReserva)
+
 function generarCodigo() {
     let codigo = '';
     const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -15,7 +18,7 @@ function reiniciar() {
     document.getElementById('mensaje').classList.remove('error');
     document.querySelector('.checkmark').style.display = 'none';
     document.querySelector('.checkerror').style.display = 'none';
-    document.getElementById('codigoExitoso').innerText = ''; // Limpiar el código mostrado
+    document.getElementById('codigoExitoso').innerText = '';
 }
 
 document.getElementById('pagarButton').addEventListener('click', function(event) {
@@ -35,7 +38,7 @@ document.getElementById('pagarButton').addEventListener('click', function(event)
             document.getElementById('mensaje').innerText = "PAGO REALIZADO EXITOSAMENTE";
             document.getElementById('mensaje').classList.add('success');
             const codigo = generarCodigo();
-            localStorage.setItem('codigoPagoExitoso', codigo);
+            codigosReserva.push(codigo);
             document.getElementById('codigoExitoso').innerText = `Reserva: ${codigo}`;
         } else {
             document.querySelector('.checkerror').style.display = 'block';
