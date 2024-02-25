@@ -54,17 +54,17 @@
             <a href="#" id="mostrarPopup">Detalle de la tarifa</a>
             <div id="popup" class="popup">
                 <div class="popupContent">
-                  <h2>DETALLLE DE LA TARIFA</h2>
-                  <p>Precio base: $100</p>
-                  <p>Impuestos: $10</p>
-                  <p>Total: $110</p>
+                    <h2>DETALLLE DE LA TARIFA</h2>
+                    <p>Precio base: $100</p>
+                    <p>Impuestos: $10</p>
+                    <p>Total: $110</p>
                 </div>
-              </div>
+            </div>
         </section>
         <section class="services">
             <h2>PAGO</h2>
             <div class="container mt-5">
-                <form id="formularioVuelo" action="/procesar_compra.php" method="post">
+                <form id="formularioVuelo" method="post">
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             <div class="form-check form-check-inline">
@@ -111,10 +111,10 @@
                     <div class="form-group col-md-4" id="tarjetaCreditoRow" style="display: none;">
                         <label for="cuotasCredito">Cuotas</label>
                         <select id="cuotasCreditoOption" class="form-control" name="cuotasCredito">
-                            <option value="tresCuotas">3 cuotas</option>
-                            <option value="seisCuotas">6 cuotas</option>
-                            <option value="nueveCuotas">9 cuotas</option>
-                            <option value="doceCuotas">12 cuotas</option>
+                            <option value="3">3 cuotas</option>
+                            <option value="6">6 cuotas</option>
+                            <option value="9">9 cuotas</option>
+                            <option value="12">12 cuotas</option>
                         </select>
                         <div class="form-group col-md-4 align-items-center d-flex mt-4">
                             <div class="form-check" id="checkboxTerminos">
@@ -136,7 +136,7 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-12">
-                            <button type="submit" class="btn btn-primary">PAGAR</button>
+                            <button type="submit" id="pagarButton" class="btn btn-primary">PAGAR</button>
                         </div>
                     </div>
                 </form>
@@ -170,8 +170,10 @@
 <script src="../js/showFlight.js"></script>
 <script src="../js/rateDetail.js"></script>
 <script src="../js/main.js"></script>
+<script src="../js/pay.js"></script>
 <!-- ----Bootstrap---- -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </html>

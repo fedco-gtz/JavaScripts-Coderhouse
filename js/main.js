@@ -2,7 +2,6 @@
 // | Tercera pre entrega |
 // |---------------------| 
 
-
 let destino = ["Buenos Aires", "Ciudad Autónoma de Buenos Aires", "Catamarca", "Chaco", "Chubut", "Cordoba", "Corrientes", "Entre Ríos", "Formosa", "Jujuy", "La Pampa", "La Rioja", "Mendoza", "Misiones", "Neuquén", "Río Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe", "Santiago del Estero", "Tierra del Fuego, Antártida e Islas del Atlántico Sur", "Tucumán"
 ];
 
@@ -69,6 +68,8 @@ class Vuelo {
         const IVA = 0.21;
         return this.idaYVuelta * (tasaEmbarque + IVA);
     };
+
+    
 }
 
 // Obtengo los datos almacenados en localStorage
@@ -100,6 +101,7 @@ if (VUELO.esIdaYVuelta !== "IDA") {
     console.log(`Precio total (No incluye intereses): $${VUELO.totalIda + VUELO.impuestosTotal}`);
 };
 
+const PRECIOTOTALSININTERESES = VUELO.totalIda + VUELO.impuestosTotal;
 
 
 
@@ -127,7 +129,7 @@ if (VUELO.esIdaYVuelta !== "IDA") {
 
 
 /*
-// Función que calcula impuestos
+
 // Función que solicita los datos de la tarjeta, cualquiera que sea el método de pago
 solicitarInformacionTarjeta() {
     this.numeroTarjeta = prompt("Ingresa el número de tarjeta:");

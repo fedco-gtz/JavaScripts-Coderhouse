@@ -1,149 +1,83 @@
-/*
-class Pago {
-    constructor(vuelo) {
-        this.tipoPago = vuelo.tipoPago.toUpperCase();
-        this.numeroTarjeta = "";
-        this.vencimientoTarjeta = "";
-        this.codigoSeguridad = "";
-        this.nombreTitular = "";
-        this.cantidadCuotas = 1;
-        this.emisorTarjeta = "";
-        this.interesPorcentaje = 0;
-        this.totalConIntereses = 0;
+// |------------------------------------------------------|
+// |  Código que implementa la lógica del pago del vuelo  |
+// |------------------------------------------------------|
+document.addEventListener('DOMContentLoaded', function () {
+    const FORM = document.getElementById('formularioVuelo');
 
-        if (this.tipoPago === "TARJETA DEBITO" || this.tipoPago === "TARJETA CREDITO") {
-            this.solicitarInformacionTarjeta(vuelo);
-            this.detectarEmisorTarjeta();
-            if (this.tipoPago === "TARJETA CREDITO") {
-                this.solicitarCantidadCuotas();
+    FORM.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const TIPO_PAGO = document.querySelector('input[name="tipo_pago"]:checked');
+        const NUMERO_TARJETA = document.getElementById('NumeroTarjetaInput').value;
+        const CODIGO_SEGURIDAD = document.getElementById('codigoSeguridadInput').value;
+        const VENCIMIENTO_TARJETA = document.getElementById('vencimientoTarjetaInput').value;
+        const NOMBRE_TITULAR = document.getElementById('nombreTitularInput').value;
+        const ACEPTA_TERMINOS = document.getElementById('terminosCondiciones').checked;
+
+        let CUOTAS_CREDITO = 1; 
+        if (TIPO_PAGO.value === "Tarjeta Crédito") {
+            CUOTAS_CREDITO = parseInt(document.getElementById('cuotasCreditoOption').value);
+        }
+
+        console.log(`|-----------------|\n| RESUMEN DE PAGO |\n|-----------------|`);
+        console.log(`Tipo de Pago: ${TIPO_PAGO.value}`);
+        console.log(`Número de Tarjeta: ${NUMERO_TARJETA}`);
+        console.log(`Código de Seguridad: ${CODIGO_SEGURIDAD}`);
+        console.log(`Vencimiento de Tarjeta: ${VENCIMIENTO_TARJETA}`);
+        console.log(`Nombre del Titular: ${NOMBRE_TITULAR}`);
+        console.log(`Cuotas de Crédito: ${CUOTAS_CREDITO}`);
+        console.log(`Acepta Términos y Condiciones: ${ACEPTA_TERMINOS}`);
+
+        verificarEmisor(NUMERO_TARJETA, CODIGO_SEGURIDAD, CUOTAS_CREDITO);
+    });
+});
+
+function verificarEmisor(NUMERO_TARJETA, CODIGO_SEGURIDAD, CUOTAS_CREDITO) {
+    const PRIMER_DIGITO = NUMERO_TARJETA.charAt(0);
+    const LONGITUD = NUMERO_TARJETA.length;
+    let INTERES = 0;
+
+    let EMISOR = "Desconocido";
+    let LONGITUD_CODIGO_SEGURIDAD_REQUERIDA = 0;
+
+    if (LONGITUD === 16) {
+        if (PRIMER_DIGITO === '4') {
+            EMISOR = "VISA";
+            LONGITUD_CODIGO_SEGURIDAD_REQUERIDA = 3;
+            if (CUOTAS_CREDITO === 9) {
+                INTERES = 0.4;
+            } else if (CUOTAS_CREDITO === 12) {
+                INTERES = 1.1;
             }
+        } else if (PRIMER_DIGITO === '5') {
+            EMISOR = "MASTERCARD";
+            LONGITUD_CODIGO_SEGURIDAD_REQUERIDA = 3;
+            INTERES = 0.25;
+        }
+    } else if (LONGITUD === 15 && PRIMER_DIGITO === '3') {
+        EMISOR = "AMERICAN EXPRESS";
+        LONGITUD_CODIGO_SEGURIDAD_REQUERIDA = 4;
+        if (CUOTAS_CREDITO !== 12) {
+            INTERES = 0.45;
         }
     }
 
-    solicitarInformacionTarjeta(vuelo) {
-        this.numeroTarjeta = prompt("Ingresa el número de tarjeta:");
-
-        if ((this.emisorTarjeta === "Visa" || this.emisorTarjeta === "Mastercard") && this.numeroTarjeta.length !== 16) {
-            throw new Error("Número de tarjeta inválido. Debe tener 16 dígitos.");
-        } else if (this.emisorTarjeta === "American Express" && this.numeroTarjeta.length !== 15) {
-            throw new Error("Número de tarjeta inválido. Debe tener 15 dígitos.");
-        }
-        this.vencimientoTarjeta = prompt("Ingresa la fecha de vencimiento (MM/YY):");
-        this.codigoSeguridad = prompt("Ingresa el código de seguridad:");
-        if ((this.emisorTarjeta === "Visa" || this.emisorTarjeta === "Mastercard") && this.codigoSeguridad.length !== 3) {
-            throw new Error("Código de seguridad inválido. Debe tener 3 dígitos.");
-        } else if (this.emisorTarjeta === "American Express" && this.codigoSeguridad.length !== 4) {
-            throw new Error("Código de seguridad inválido. Debe tener 4 dígitos.");
-        }
-        this.nombreTitular = prompt("Ingresa el nombre del titular:");
+    if (CODIGO_SEGURIDAD.length === LONGITUD_CODIGO_SEGURIDAD_REQUERIDA) {
+        console.log(`Emisor de la tarjeta: ${EMISOR}`);
+        console.log(`Longitud del código de seguridad correcta`);
+    } else {
+        console.log(`Error: Longitud incorrecta del código de seguridad para ${EMISOR}`);
     }
-
-    detectarEmisorTarjeta() {
-        const numeroTarjetaPrefix = this.numeroTarjeta.slice(0, 1);
-        switch (numeroTarjetaPrefix) {
-            case "4":
-                this.emisorTarjeta = "Visa";
-                break;
-            case "5":
-                this.emisorTarjeta = "Mastercard";
-                break;
-            case "3":
-                this.emisorTarjeta = "American Express";
-                break;
-            default:
-                throw new Error("Emisor de tarjeta no reconocido.");
-        }
-    }
-
-    solicitarCantidadCuotas() {
-        this.cantidadCuotas = parseInt(prompt("Ingresa la cantidad de cuotas (3, 6, 9 o 12)"));
-
-        switch (this.emisorTarjeta) {
-            case "Visa":
-                this.aplicarInteresVisa();
-                break;
-            case "Mastercard":
-                this.aplicarInteresMastercard();
-                break;
-            case "American Express":
-                this.aplicarInteresAmericanExpress();
-                break;
-            default:
-                break;
-        }
-    }
-
-    aplicarInteresVisa() {
-        if (this.cantidadCuotas === 3 || this.cantidadCuotas === 6) {
-            this.interesPorcentaje = 0;
-        } else if (this.cantidadCuotas === 9) {
-            this.interesPorcentaje = 40;
-        } else if (this.cantidadCuotas === 12) {
-            this.interesPorcentaje = 110;
-        } else {
-            throw new Error("Cantidad de cuotas no válida para Visa.");
-        }
-    }
-
-    aplicarInteresMastercard() {
-        this.interesPorcentaje = 25;
-    }
-
-    aplicarInteresAmericanExpress() {
-        if (this.cantidadCuotas === 3 || this.cantidadCuotas === 6 || this.cantidadCuotas === 9) {
-            this.interesPorcentaje = 45;
-        } else if (this.cantidadCuotas === 12) {
-            this.interesPorcentaje = 0;
-        } else {
-            throw new Error("Cantidad de cuotas no válida para American Express.");
-        }
-    }
-
-    calcularIntereses(vuelo) {
-        const intereses = (vuelo.idaYVuelta + vuelo.impuestosTotal) * (this.interesPorcentaje / 100);
-        const totalConIntereses = vuelo.idaYVuelta + vuelo.impuestosTotal + intereses;
-
-        console.log(`Intereses aplicados: $${intereses}`);
-        console.log(`Total a pagar con intereses: $${totalConIntereses}`);
-    }
+    console.log(`Total de intereses: ${PRECIOTOTALSININTERESES * (INTERES)}%`);
+    console.log(`Total a pagar: ${(PRECIOTOTALSININTERESES * (INTERES)) + PRECIOTOTALSININTERESES}`);
+    console.log(`Pagarás cuotas de: ${((PRECIOTOTALSININTERESES * (INTERES)) + PRECIOTOTALSININTERESES) / CUOTAS_CREDITO}`);
 }
 
-module.exports = Pago;
-*/
-
-    document.addEventListener('DOMContentLoaded', function() {
-        // Obtener el formulario
-        var form = document.getElementById('formularioVuelo');
-
-        // Obtener el checkbox de "Acepto términos y condiciones"
-        var checkboxTerminos = document.getElementById('terminosCondiciones');
-
-        // Escuchar el evento click del checkbox
-        checkboxTerminos.addEventListener('click', function() {
-            // Verificar si el checkbox está marcado
-            if (checkboxTerminos.checked) {
-                // Obtener los valores de los campos del formulario
-                var tipoPago = form.querySelector('input[name="tipo_pago"]:checked').value;
-                var numeroTarjeta = form.querySelector('#NumeroTarjetaInput').value;
-                var codigoSeguridad = form.querySelector('#codigoSeguridadInput').value;
-                var vencimientoTarjeta = form.querySelector('#vencimientoTarjetaInput').value;
-                var nombreTitular = form.querySelector('#nombreTitularInput').value;
-
-                // Crear un objeto para almacenar los datos del formulario
-                var formData = {
-                    tipoPago: tipoPago,
-                    numeroTarjeta: numeroTarjeta,
-                    codigoSeguridad: codigoSeguridad,
-                    vencimientoTarjeta: vencimientoTarjeta,
-                    nombreTitular: nombreTitular
-                };
-
-                // Almacenar los datos del formulario en sessionStorage
-                sessionStorage.setItem('formData', JSON.stringify(formData));
-
-                alert('Datos del formulario almacenados en sessionStorage.');
-            }
-        });
-    });
-
-
+// |---------------------------------------------------------------|
+// |  Código que te redirige a la página de procesamiento de pago  |
+// |---------------------------------------------------------------|
+//document.addEventListener("DOMContentLoaded", function () {
+  //  document.getElementById("pagarButton").addEventListener("click", function () {
+    //    window.location.href = "../pages/booking.html";
+   // });
+//});

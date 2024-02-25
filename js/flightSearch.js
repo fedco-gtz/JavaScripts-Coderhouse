@@ -1,5 +1,5 @@
 // |--------------------------------------------------|
-// |  Código que muestra cards de busqueda de vuelos  |
+// |  Código que muestra cards de búsqueda de vuelos  |
 // |--------------------------------------------------|
 document.addEventListener("DOMContentLoaded", () => {
     const ALERTA_DIV = document.getElementById("alerta");
@@ -93,7 +93,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     horaVuelo: HORA_VUELO_FORMATO,
                     clase: document.getElementById("clase").value.toUpperCase(),
                     cantidadPersonas: CANTIDAD_PERSONAS,
-                    incluyeEquipaje: INCLUYE_EQUIPAJE ? "SÍ" : "NO"
+                    incluyeEquipaje: INCLUYE_EQUIPAJE ? "SÍ" : "NO",
+                    aerolinea: LOGO_URL, 
                 };
 
                 localStorage.setItem("datosSeleccionados", JSON.stringify(DATOS_SELECCIONADOS));
