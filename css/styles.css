@@ -298,4 +298,84 @@ main {
   border: 5px solid rgb(0, 31, 85);
 }
 
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+#popupPay {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 33%;
+  height: 45%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(242, 242, 242);
+  padding: 20px;
+  border: 5px solid rgb(0, 31, 85) !important;
+  text-align: center;
+  border-radius: 20px;
+}
+#popupPay img {
+  position: relative;
+  margin: auto;
+}
+#popupPay #codigoExitoso {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.spinner {
+  display: none;
+  width: 100px !important;
+  height: 100px !important;
+  border: 5px solid rgb(242, 242, 242);
+  border-top: 5px solid rgb(52, 152, 219);
+  border-radius: 50%;
+  animation: spin 1.5s linear infinite;
+  margin: 0 auto;
+  margin-top: 12%;
+}
+.spinner p {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.close {
+  display: none;
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  cursor: pointer;
+}
+
+.checkmark,
+.checkerror {
+  display: none;
+  max-width: 100px;
+  max-height: 100px;
+  margin-top: 12% !important;
+}
+
+#mensaje.error {
+  color: rgb(254, 80, 79);
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#mensaje.success {
+  color: rgb(13, 183, 131);
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#mensaje.process {
+  font-size: 24px;
+  font-weight: bold;
+}
+
 /*# sourceMappingURL=styles.css.map */

@@ -21,3 +21,86 @@
   z-index: 1;
   border: 5px solid $color_1;
 }
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#popupPay {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 33%;
+  height: 45%;
+  transform: translate(-50%, -50%);
+  background-color: $background-color_1;
+  padding: 20px;
+  border: 5px solid $color_1 !important;
+  text-align: center;
+  border-radius: 20px;
+  img {
+    position: relative;
+    margin: auto;
+  }
+  #codigoExitoso{
+    font-size: 24px;
+    font-weight: bold;
+  }
+}
+
+.spinner {
+  display: none;
+  width: 100px !important;
+  height: 100px !important;
+  border: 5px solid $color_2;
+  border-top: 5px solid $color_6;
+  border-radius: 50%;
+  animation: spin 1.5s linear infinite;
+  margin: 0 auto;
+  margin-top: 12%;
+  p {
+    font-size: 24px;
+    font-weight: bold;
+  }
+}
+
+.close {
+  display: none;
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  cursor: pointer;
+}
+
+.checkmark,
+.checkerror {
+  display: none;
+  max-width: 100px;
+  max-height: 100px;
+  margin-top: 12% !important;
+}
+
+
+#mensaje.error {
+  color: $color_4;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#mensaje.success {
+  color: $color_5;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#mensaje.process {
+  font-size: 24px;
+  font-weight: bold;
+}
