@@ -262,6 +262,13 @@ main {
   transform: translateX(-186px) !important;
 }
 
+.sugerenciasOrigen,
+.sugerenciasDestino {
+  background-color: rgba(0, 31, 85, 0.2);
+  border-radius: 10px;
+  font-weight: bold;
+}
+
 #countdown {
   display: none;
 }

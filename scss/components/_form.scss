@@ -6,3 +6,10 @@
 .btn {
     transform: translateX(-186px) !important;
 };
+
+.sugerenciasOrigen,
+.sugerenciasDestino {
+    background-color: $background-color_5;
+    border-radius: 10px;
+    font-weight: bold;
+}
