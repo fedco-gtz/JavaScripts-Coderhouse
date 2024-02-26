@@ -1,3 +1,6 @@
+// |----------------------------------------------|
+// |     Código que simula el pago del pasaje     |
+// |----------------------------------------------|
 let codigosReserva = [];
 console.log(codigosReserva)
 
@@ -32,23 +35,20 @@ document.getElementById('pagarButton').addEventListener('click', function(event)
 
     let randomNumber = Math.random();
 
-    setTimeout(function() {
-        if (randomNumber > 0.5) {
-            document.querySelector('.checkmark').style.display = 'block';
-            document.getElementById('mensaje').innerText = "PAGO REALIZADO EXITOSAMENTE";
-            document.getElementById('mensaje').classList.add('success');
-            const codigo = generarCodigo();
-            codigosReserva.push(codigo);
-            document.getElementById('codigoExitoso').innerText = `Reserva: ${codigo}`;
-        } else {
-            document.querySelector('.checkerror').style.display = 'block';
-            document.getElementById('mensaje').innerText = "FONDOS INSUFICIENTES";
-            document.getElementById('mensaje').classList.add('error');
-        }
+    setTimeout(() => {
+        (randomNumber > 0.5) ? (
+            document.querySelector('.checkmark').style.display = 'block',
+            document.getElementById('mensaje').innerText = "PAGO REALIZADO EXITOSAMENTE",
+            document.getElementById('mensaje').classList.add('success'),
+            codigosReserva.push(generarCodigo()),
+            document.getElementById('codigoExitoso').innerText = `Reserva: ${codigosReserva[codigosReserva.length - 1]}`
+        ) : (
+            document.querySelector('.checkerror').style.display = 'block',
+            document.getElementById('mensaje').innerText = "FONDOS INSUFICIENTES",
+            document.getElementById('mensaje').classList.add('error')
+        );
         document.querySelector('.spinner').style.display = 'none';
     }, 3000);
 });
 
-document.querySelector('.close').addEventListener('click', function() {
-    reiniciar();
-});
+document.querySelector('.close').addEventListener('click', () => reiniciar());

@@ -13,7 +13,7 @@ function timeLeft() {
 };
 
 // |----------------------------------------------------|
-// | Código que hace dinámico el formulario de búsqueda |
+// | Código que hace dinamico el formulario de busqueda |
 // |----------------------------------------------------|
 const TIPOVUELO = document.getElementsByName('tipo_vuelo');
 const FECHAREGRESOROW = document.getElementById('fechaRegresoRow');
@@ -27,8 +27,9 @@ for (let i = 0; i < TIPOVUELO.length; i++) {
 };
 
 // |----------------------------------------------------|
-// |   Código que hace dinámico el formulario de pago   |
+// |   Código que hace dinamico el formulario de pago   |
 // |----------------------------------------------------|
+
 document.addEventListener("DOMContentLoaded", function () {
     const tarjetaDebitoInput = document.getElementById("tarjetaDebito");
     const tarjetaCreditoInput = document.getElementById("tarjetaCredito");
@@ -46,11 +47,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // |-------------------------------------------------|
-// | Código que hace dinámicas las métricas del HTML |
+// | Código que hace dinamicas las metricas del HTML |
 // |-------------------------------------------------|
 let cantidadElementos = destino.length;
 document.getElementById("cantidadElementos").innerHTML = cantidadElementos;
 timeLeft();
 actualizarVisibilidad();
-
-

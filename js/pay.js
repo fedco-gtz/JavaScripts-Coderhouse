@@ -1,6 +1,6 @@
-// |------------------------------------------------------|
-// |  Código que implementa la lógica del pago del vuelo  |
-// |------------------------------------------------------|
+// |----------------------------------------------------------------|
+// |  Código que implementa la verificacion del formulario de pago  |
+// |----------------------------------------------------------------|
 document.addEventListener('DOMContentLoaded', function () {
     const FORM = document.getElementById('formularioVuelo');
 
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const ACEPTA_TERMINOS = document.getElementById('terminosCondiciones').checked;
 
         let CUOTAS_CREDITO = 1; 
-        if (TIPO_PAGO.value === "Tarjeta Crédito") {
+        if (TIPO_PAGO.value !== "Tarjeta Crédito") {
             CUOTAS_CREDITO = parseInt(document.getElementById('cuotasCreditoOption').value);
         }
 

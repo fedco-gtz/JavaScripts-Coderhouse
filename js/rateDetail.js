@@ -6,7 +6,7 @@ document.getElementById("mostrarPopup").addEventListener("click", function () {
   document.getElementById("detalle").innerHTML =
   `Pasaje de ida: $ ${VUELO.precioDestino.toFixed(2)}<br>
   Pasaje de vuelta: $ ${VUELO.precioIda.toFixed(2) - VUELO.precioDestino.toFixed(2)}<br>
-  Impuestos y tasas: $ ${VUELO.impuestosTotal}<br>
+  Impuestos y tasas: $ ${VUELO.impuestosTotal.toFixed(2)}<br>
   ___________________________________<br>
   <strong>TARIFA TOTAL: $ ${VUELO.precioTotalPasaje().toFixed(2)}</strong>`;
 });

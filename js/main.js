@@ -13,12 +13,14 @@ class Vuelo {
         PRIMERA: 0.6,
     };
     constructor(datos) {
+        // Desestructuración de parámetros
+        const { origen, destino, clase, cantidadPersonas, tipoVuelo } = datos;
         // Armado de viaje
-        this.origen = datos.origen;
-        this.destino = datos.destino;
-        this.clase = datos.clase;
-        this.cantidadPasajeros = datos.cantidadPersonas;
-        this.esIdaYVuelta = datos.tipoVuelo;
+        this.origen = origen;
+        this.destino = destino;
+        this.clase = clase;
+        this.cantidadPasajeros = cantidadPersonas;
+        this.esIdaYVuelta = tipoVuelo;
         // Costo del viaje
         this.precioBase = this.calcularPrecioBase();
         this.precioClase = this.calcularPrecioClase();
@@ -29,8 +31,9 @@ class Vuelo {
     };
     // Función que calcula el precio base del pasaje
     calcularPrecioBase() {
-        let longitudOrigen = this.origen.length;
-        let longitudDestino = this.destino.length;
+        // Uso de operador Nullish Coalescing
+        let longitudOrigen = this.origen?.length ?? 0;
+        let longitudDestino = this.destino?.length ?? 0;
         return longitudOrigen * longitudDestino;
     };
     // Función que calcula el precio por la clase del vuelo
@@ -44,33 +47,28 @@ class Vuelo {
     };
     // Función que calcula el precio del pasaje de IDA
     calcularPrecioDestino() {
-        let precioDestino = (this.calcularPrecioBase() + this.calcularPrecioClase())*110;
+        let precioDestino = (this.calcularPrecioBase() + this.calcularPrecioClase()) * 47;
         return precioDestino;
     };
     // Función que calcula el precio segun tipo de vuelo
     calcularPrecioIda() {
-        if (this.esIdaYVuelta === "IDA_VUELTA") {
-            let precioIdaYVuelta = this.calcularPrecioDestino() * 0.9 + this.calcularPrecioDestino();
-            return precioIdaYVuelta;
-        } else {
-            return this.calcularPrecioDestino()
-        }
+        // Uso de operador ternario
+        let precioIdaYVuelta = (this.esIdaYVuelta === "IDA_VUELTA") ? (this.calcularPrecioDestino() * 0.9 + this.calcularPrecioDestino()) : this.calcularPrecioDestino();
+        return precioIdaYVuelta;
     };
     // Función que calcula los impuestos a cobrar
     calcularImpuestos() {
         let tasas = 0.5;
         let iva = 0.21;
         let impuestoTotal = tasas + iva;
-        if (this.esIdaYVuelta === "IDA_VUELTA") {
-            let impuestos = this.calcularPrecioIda() * impuestoTotal;
-            return impuestos;
-        } else {
-            return this.calcularPrecioDestino() * impuestoTotal;
-        }
+        // Uso de operador lógico AND
+        let impuestos = (this.esIdaYVuelta === "IDA_VUELTA" && this.calcularPrecioIda()) ? this.calcularPrecioIda() * impuestoTotal : this.calcularPrecioDestino() * impuestoTotal;
+        return impuestos;
     };
     // Función que calcula el precio total del pasaje
     precioTotalPasaje() {
-        let precioTotal = (this.calcularPrecioIda() + this.calcularImpuestos())*this.cantidadPasajeros;
+        // Uso de operador lógico OR
+        let precioTotal = (this.calcularPrecioIda() + this.calcularImpuestos()) * this.cantidadPasajeros || 0;
         return precioTotal;
     };
 };

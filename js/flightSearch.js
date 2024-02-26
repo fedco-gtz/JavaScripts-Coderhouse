@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
 
     document.getElementById("buscarBtn").addEventListener("click", () => {
-        const TIPO_VUELO = document.querySelector('input[name="tipo_vuelo"]:checked').value.toUpperCase();
+        const { value: TIPO_VUELO } = document.querySelector('input[name="tipo_vuelo"]:checked') || {};
         const ORIGEN = document.getElementById("origenInput").value.toUpperCase();
         const DESTINO = document.getElementById("destinoInput").value.toUpperCase();
         const FECHA = document.getElementById("fecha").value;
@@ -39,12 +39,14 @@ document.addEventListener("DOMContentLoaded", () => {
         for (let i = 0; i < NUM_RESULTADOS; i++) {
             const AEROLINEA_LOGO_INDEX = Math.floor(Math.random() * AEROLINEAS_LOGOS.length);
             const LOGO_URL = AEROLINEAS_LOGOS[AEROLINEA_LOGO_INDEX];
-            const AEROLINEA = "AEROLÍNEA " + (i + 1);
+            const AEROLINEA = `AEROLÍNEA ${i + 1}`;
             const INCLUYE_EQUIPAJE = Math.random() < 0.5;
             
-            const HORA_VUELO = Math.floor(Math.random() * 24);
-            const MINUTOS_VUELO = Math.floor(Math.random() * 60);
-            const HORA_VUELO_FORMATO = `${HORA_VUELO.toString().padStart(2, '0')}:${MINUTOS_VUELO.toString().padStart(2, '0')}`;
+            let HORA_VUELO = Math.floor(Math.random() * 24);
+            let MINUTOS_VUELO = Math.floor(Math.random() * 60);
+            HORA_VUELO = HORA_VUELO < 10 ? `0${HORA_VUELO}` : HORA_VUELO;
+            MINUTOS_VUELO = MINUTOS_VUELO < 10 ? `0${MINUTOS_VUELO}` : MINUTOS_VUELO;
+            const HORA_VUELO_FORMATO = `${HORA_VUELO}:${MINUTOS_VUELO}`;
 
             const DIAS_SEMANA = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
             const FECHA_SELECCIONADA = new Date(FECHA);
@@ -52,9 +54,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const FECHA_FORMATEADA = `${FECHA_SELECCIONADA.getDate().toString().padStart(2, '0')}/${(FECHA_SELECCIONADA.getMonth() + 1).toString().padStart(2, '0')}/${FECHA_SELECCIONADA.getFullYear()}`;
 
-            const FECHA_REGRESO_SELECCIONADA = new Date(FECHA_REGRESO);
-            const DIA_REGRESO_SEMANA = DIAS_SEMANA[FECHA_REGRESO_SELECCIONADA.getDay()];
-            const FECHA_REGRESO_FORMATEADA = FECHA_REGRESO ? `${FECHA_REGRESO_SELECCIONADA.getDate().toString().padStart(2, '0')}/${(FECHA_REGRESO_SELECCIONADA.getMonth() + 1).toString().padStart(2, '0')}/${FECHA_REGRESO_SELECCIONADA.getFullYear()}` : 'N/A';
+            const FECHA_REGRESO_SELECCIONADA = FECHA_REGRESO ? new Date(FECHA_REGRESO) : null;
+            const DIA_REGRESO_SEMANA = FECHA_REGRESO_SELECCIONADA ? DIAS_SEMANA[FECHA_REGRESO_SELECCIONADA.getDay()] : null;
+            const FECHA_REGRESO_FORMATEADA = FECHA_REGRESO_SELECCIONADA ? `${FECHA_REGRESO_SELECCIONADA.getDate().toString().padStart(2, '0')}/${(FECHA_REGRESO_SELECCIONADA.getMonth() + 1).toString().padStart(2, '0')}/${FECHA_REGRESO_SELECCIONADA.getFullYear()}` : 'N/A';
 
             const CARD = document.createElement("div");
             CARD.classList.add("resultCard");
@@ -72,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <li><strong>Origen</strong> <br> ${ORIGEN}</li>
             <li><strong>Destino</strong> <br> ${DESTINO}</li>
             <li><strong>Fecha de Viaje</strong> <br> ${DIA_SEMANA.toUpperCase()}, ${FECHA_FORMATEADA}</li>
-            <li>${TIPO_VUELO === "IDA_VUELTA" ? `<strong>Fecha de Regreso</strong> <br> ${DIA_REGRESO_SEMANA.toUpperCase()}, ${FECHA_REGRESO_FORMATEADA}<br>` : ''}</li>
+            <li>${TIPO_VUELO === "IDA_VUELTA" && FECHA_REGRESO ? `<strong>Fecha de Regreso</strong> <br> ${DIA_REGRESO_SEMANA.toUpperCase()}, ${FECHA_REGRESO_FORMATEADA}<br>` : ''}</li>
             <li><strong>Hora de Vuelo</strong> <br> ${HORA_VUELO_FORMATO}</li>
             <li><strong>Clase</strong> <br> ${document.getElementById("clase").value.toUpperCase()}</li>
             <li><strong>Cantidad de Personas</strong> <br> ${CANTIDAD_PERSONAS}</li>
@@ -97,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 };
 
                 localStorage.setItem("datosSeleccionados", JSON.stringify(DATOS_SELECCIONADOS));
-                window.location.href = "./pages/pay.html";;
+                window.location.href = "./pages/pay.html";
             });
 
             const LOGO_AEROLINEA = document.createElement("img");
@@ -116,5 +118,4 @@ document.addEventListener("DOMContentLoaded", () => {
         };
     });
 });
-
 
