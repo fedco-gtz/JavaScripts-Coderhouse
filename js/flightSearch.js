@@ -94,7 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     clase: document.getElementById("clase").value.toUpperCase(),
                     cantidadPersonas: CANTIDAD_PERSONAS,
                     incluyeEquipaje: INCLUYE_EQUIPAJE ? "SÍ" : "NO",
-                    aerolinea: LOGO_URL, 
                 };
 
                 localStorage.setItem("datosSeleccionados", JSON.stringify(DATOS_SELECCIONADOS));

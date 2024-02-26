@@ -2,28 +2,15 @@
 // | Tercera pre entrega |
 // |---------------------| 
 
-let destino = ["Buenos Aires", "Ciudad Autónoma de Buenos Aires", "Catamarca", "Chaco", "Chubut", "Cordoba", "Corrientes", "Entre Ríos", "Formosa", "Jujuy", "La Pampa", "La Rioja", "Mendoza", "Misiones", "Neuquén", "Río Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe", "Santiago del Estero", "Tierra del Fuego, Antártida e Islas del Atlántico Sur", "Tucumán"
-];
+let destino = ["Buenos Aires | EPA | Aeropuerto El Palomar", "Buenos Aires | EZE | Aeropuerto Int. Ezeiza", "Buenos Aires | FDO | Aeropuerto Int. de San Fernando", "Buenos Aires | AEP | Aeroparque Jorge Newbery", "Catamarca | CTC | Aeropuerto Gral. Felipe Varela", "Chaco | RES | Aeropuerto Int. de Resistencia", "Chubut | CRD | Aeropuerto Int. Gral. Enrique Mosconi", "Chubut | EQS | Aeropuerto de Esquel, Brig. Gral. Antonio Parodi", "Chubut | PMY | Aeropuerto El Tehuelche", "Córdoba | COR | Aeropuerto Int. Ing. Aer. Ambrosio Taravella", "Córdoba | RCU | Aeropuerto Área de Material de Río Cuarto", "Entre Ríos | PRA | Aeropuerto Gral. Urquiza", "Formosa | FMA | Aeropuerto Int. de Formosa", "Jujuy | JUJ | Aeropuerto Int. Gdor. Horacio Guzmán", "La Pampa | GPO | Aeropuerto de Gral. Pico", "La Pampa | RSA | Aeropuerto de Santa Rosa", "La Rioja | IRJ | Aeropuerto Cap. Vicente Almandos Almonacide", "Mar del Plata | MDQ | Aeropuerto Int. Astor Piazzolla", "Mendoza | AFA | Aeropuerto Int. Suboficial Ayudante Santiago Germano", "Mendoza | LGS | Aeropuerto Int. de Malargüe", "Mendoza | MDZ | Aeropuerto Int. El Plumerillo", "Misiones | IGR | Aeropuerto Int. de las Cataratas del Iguazú", "Misiones | PSS | Aeropuerto Libertador Gral. José de San Martín", "Río Negro | BRC | Aeropuerto Int. Tte. Luis Candelaria", "Río Negro | VDM | Aeropuerto Int. Gdor. Edgardo Castello", "Salta | SLA | Aeropuerto Int. Martín Miguel de Güemes", "San Juan | UAQ | Aeropuerto de San Juan", "San Luis | LUQ | Aeropuerto Brig. Mayor Cesar Raúl Ojeda", "San Luis | VME | Aeropuerto de Villa Reynolds", "Santa Cruz | RGL | Aeropuerto Int. Piloto Civil Norberto Fernández", "Santa Fé | RCQ | Aeropuerto Tte. Daniel Jukic", "Santiago del Estero | RHD | Aeropuerto Int. Termas de Rio Hondo", "Santiago del Estero | SDE | Aeropuerto 'Madre de Ciudades'", "Tierra del Fuego | RGA | Aeropuerto Int. Gdor. Ramon Trejo Noel", "Tucuman | TUC | Aeropuerto Int. de Tucumán Benjamín Matienzo",];
 
 class Vuelo {
-    // Origen del vuelo
-    static origen = {
-        "BUENOS AIRES": 1,
-        SALTA: 2,
-        "LA RIOJA": 3
-    };
-    // Destino del vuelo
-    static destino = {
-        CORDOBA: 500,
-        MISIONES: 700,
-        "MAR DEL PLATA": 600
-    };
     // Porcentajes a cobrar por clase
     static porcentajesClase = {
         ECONOMICA: 0.15,
-        PREMIUM: 0.30,
+        PREMIUM: 0.3,
         BUSINESS: 0.45,
-        PRIMERA: 0.60
+        PRIMERA: 0.6,
     };
     constructor(datos) {
         // Armado de viaje
@@ -33,45 +20,60 @@ class Vuelo {
         this.cantidadPasajeros = datos.cantidadPersonas;
         this.esIdaYVuelta = datos.tipoVuelo;
         // Costo del viaje
+        this.precioBase = this.calcularPrecioBase();
+        this.precioClase = this.calcularPrecioClase();
         this.precioDestino = this.calcularPrecioDestino();
-        this.totalIda = this.calcularTotalIda();
-        this.idaYVuelta = this.calcularIdaYVuelta();
+        this.precioIda = this.calcularPrecioIda();
         this.impuestosTotal = this.calcularImpuestos();
+        this.precioTotalPasaje = this.precioTotalPasaje;
     };
-    // Función que calcula el precio dependiendo del destino y origen ingresados por el usuario
+    // Función que calcula el precio base del pasaje
+    calcularPrecioBase() {
+        let longitudOrigen = this.origen.length;
+        let longitudDestino = this.destino.length;
+        return longitudOrigen * longitudDestino;
+    };
+    // Función que calcula el precio por la clase del vuelo
+    calcularPrecioClase() {
+        if (!(this.clase in Vuelo.porcentajesClase)) {
+            console.log(`La clase "${this.clase}" no está definida.`);
+            return 0;
+        }
+        let precioClase = this.calcularPrecioBase() * Vuelo.porcentajesClase[this.clase];
+        return precioClase;
+    };
+    // Función que calcula el precio del pasaje de IDA
     calcularPrecioDestino() {
-        if (!(this.destino in Vuelo.destino)) {
-            throw new Error("DESTINO NO VÁLIDO");
-        };
-        let precioBase = Vuelo.origen[this.origen];
-        return precioBase * Vuelo.destino[this.destino];
+        let precioDestino = (this.calcularPrecioBase() + this.calcularPrecioClase())*110;
+        return precioDestino;
     };
-    // Función que agrega el porcentaje por la clase al precio calculado en calcularPrecioDestino()
-    calcularTotalIda() {
-        let porcentajeAumento = Vuelo.porcentajesClase[this.clase];
-        let precioClase = this.precioDestino * (1 + porcentajeAumento);
-        return precioClase * this.cantidadPasajeros;
-    };
-    // Función que agrega porcentaje de descuento si el viaje es "Ida y Vuelta" de la función calcularTotalIda()
-    calcularIdaYVuelta() {
-        if (this.esIdaYVuelta !== "IDA") {
-            let descuentoVuelta = 0.1;
-            let precioVuelta = this.totalIda - (this.totalIda * descuentoVuelta);
-            return this.totalIda + precioVuelta;
+    // Función que calcula el precio segun tipo de vuelo
+    calcularPrecioIda() {
+        if (this.esIdaYVuelta === "IDA_VUELTA") {
+            let precioIdaYVuelta = this.calcularPrecioDestino() * 0.9 + this.calcularPrecioDestino();
+            return precioIdaYVuelta;
         } else {
-            return this.totalIda;
-        };
+            return this.calcularPrecioDestino()
+        }
     };
-    // Función que calcula impuestos
+    // Función que calcula los impuestos a cobrar
     calcularImpuestos() {
-        let tasaEmbarque = 0.50;
-        const IVA = 0.21;
-        return this.idaYVuelta * (tasaEmbarque + IVA);
+        let tasas = 0.5;
+        let iva = 0.21;
+        let impuestoTotal = tasas + iva;
+        if (this.esIdaYVuelta === "IDA_VUELTA") {
+            let impuestos = this.calcularPrecioIda() * impuestoTotal;
+            return impuestos;
+        } else {
+            return this.calcularPrecioDestino() * impuestoTotal;
+        }
     };
-
-    
-}
-
+    // Función que calcula el precio total del pasaje
+    precioTotalPasaje() {
+        let precioTotal = (this.calcularPrecioIda() + this.calcularImpuestos())*this.cantidadPasajeros;
+        return precioTotal;
+    };
+};
 // Obtengo los datos almacenados en localStorage
 const DATOSLOCALSTORAGE = localStorage.getItem('datosSeleccionados');
 // Convierto la cadena JSON en un objeto JavaScript
@@ -81,244 +83,19 @@ const VUELO = new Vuelo(DATOSSELECCIONADOS);
 
 // Resumen de los pasajes a comprar
 console.log(`|--------------------|\n| RESUMEN DE PASAJES |\n|--------------------|`);
-console.log(`Origen: ${VUELO.origen}`);
-console.log(`Destino: ${VUELO.destino}`);
-console.log(`Clase: ${VUELO.clase}`);
-console.log(`Cantidad de pasajeros: ${VUELO.cantidadPasajeros}`);
-console.log(`|---------------|\n| TIPO DE VIAJE |\n|---------------|`);
-if (VUELO.esIdaYVuelta !== "IDA") {
-    console.log(`IDA Y VUELTA`);
-    console.log(`Pasaje de ida: $${VUELO.totalIda}`);
-    console.log(`Pasaje de vuelta: $${(VUELO.idaYVuelta - VUELO.totalIda)}`);
-    console.log(`Precio total (No incluye impuestos y tasas): $${VUELO.idaYVuelta}`);
-    console.log(`Impuestos y tasas: $${VUELO.impuestosTotal}`);
-    console.log(`Precio total (No incluye intereses): $${VUELO.idaYVuelta + VUELO.impuestosTotal}`);
-} else {
-    console.log(`IDA`);
-    console.log(`Precio total (No incluye impuestos y tasas): $${VUELO.totalIda}`);
-    console.log(`Impuestos y tasas: $${VUELO.impuestosTotal}`);
-
-    console.log(`Precio total (No incluye intereses): $${VUELO.totalIda + VUELO.impuestosTotal}`);
-};
-
-const PRECIOTOTALSININTERESES = VUELO.totalIda + VUELO.impuestosTotal;
+console.log(`Origen: ${VUELO.origen} `);
+console.log(`Destino: ${VUELO.destino} `);
+console.log(`Clase: ${VUELO.clase} `);
+console.log(`Cantidad de pasajeros: ${VUELO.cantidadPasajeros} `);
+console.log(`Tipo de vuelo: ${VUELO.esIdaYVuelta} `)
+console.log(`|----------------|\n| COSTO DE VIAJE |\n|----------------| `);
+console.log(`Precio Base: ${VUELO.precioBase.toFixed(2)} `);
+console.log(`Precio Clase: ${VUELO.precioClase.toFixed(2)} `);
+console.log(`PRECIO TOTAL(SIN IMPUESTOS): ${VUELO.precioDestino.toFixed(2)} `);
+console.log(`Precio tipo destino: ${VUELO.precioIda.toFixed(2)} `);
+console.log(`Impuestos y tasas: ${VUELO.impuestosTotal.toFixed(2)} `);
+console.log(`PRECIO TOTAL(CON IMPUESTOS): ${VUELO.precioTotalPasaje().toFixed(2)} `);
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-// Función que solicita los datos de la tarjeta, cualquiera que sea el método de pago
-solicitarInformacionTarjeta() {
-    this.numeroTarjeta = prompt("Ingresa el número de tarjeta:");
-    if ((this.emisorTarjeta === "Visa" || this.emisorTarjeta === "Mastercard") &&
-        this.numeroTarjeta.length !== 16) {
-
-        throw new Error("Número de tarjeta inválido. Debe tener 16 dígitos.");
-    } else if (this.emisorTarjeta === "American Express" && this.numeroTarjeta.length !==
-        15) {
-
-        throw new Error("Número de tarjeta inválido. Debe tener 15 dígitos.");
-    };
-    this.vencimientoTarjeta = prompt("Ingresa la fecha de vencimiento (MM/YY):");
-    this.codigoSeguridad = prompt("Ingresa el código de seguridad:");
-    if ((this.emisorTarjeta === "Visa" || this.emisorTarjeta === "Mastercard") &&
-        this.codigoSeguridad.length !== 3) {
-
-        throw new Error("Código de seguridad inválido. Debe tener 3 dígitos.");
-    } else if (this.emisorTarjeta === "American Express" && this.codigoSeguridad.length !==
-        4) {
-
-        throw new Error("Código de seguridad inválido. Debe tener 4 dígitos.");
-    };
-    this.nombreTitular = prompt("Ingresa el nombre del titular:");
-};
-// Función que detecta el emisor de la tarjeta
-detectarEmisorTarjeta() {
-    const numeroTarjetaPrefix = this.numeroTarjeta.slice(0, 1);
-    switch (numeroTarjetaPrefix) {
-        case "4":
-            this.emisorTarjeta = "Visa";
-            break;
-        case "5":
-            this.emisorTarjeta = "Mastercard";
-            break;
-        case "3":
-            this.emisorTarjeta = "American Express";
-            break;
-        default:
-            throw new Error("Emisor de tarjeta no reconocido.");
-    };
-};
-// Función que solicita cantidad de cuotas, si el método de pago es tarjeta de crédito
-solicitarCantidadCuotas() {
-    this.cantidadCuotas = parseInt(prompt("Ingresa la cantidad de cuotas (3, 6, 9 o 12)"));
-    switch (this.emisorTarjeta) {
-
-        case "Visa":
-            this.aplicarInteresVisa();
-            break;
-        case "Mastercard":
-            this.aplicarInteresMastercard();
-            break;
-        case "American Express":
-            this.aplicarInteresAmericanExpress();
-            break;
-        default:
-            break;
-    };
-};
-// Función que aplica los intereses si el emisor de la tarjeta es VISA
-// |----------VISA------------|
-// |3 o 6 cuotas - Sin interés|
-// |9 cuotas - 40% interés |
-// |12 cuotas - 110% interés |
-// |--------------------------|
-aplicarInteresVisa() {
-    if (this.cantidadCuotas === 3 || this.cantidadCuotas === 6) {
-        this.interesPorcentaje = 0;
-    } else if (this.cantidadCuotas === 9) {
-        this.interesPorcentaje = 40;
-    } else if (this.cantidadCuotas === 12) {
-        this.interesPorcentaje = 110;
-    } else {
-        throw new Error("Cantidad de cuotas no válida para Visa.");
-    };
-};
-// Función que aplica los intereses si el emisor de la tarjeta es MASTERCARD
-// |-----------MASTERCARD------------|
-// |3, 6, 9 o 12 cuotas - 25% interés|
-// |---------------------------------|
-aplicarInteresMastercard() {
-    this.interesPorcentaje = 25;
-};
-// Función que aplica los intereses si el emisor de la tarjeta es AMERICAN EXPRESS
-// |----------AMERICAN EXPRESS------------|
-// |3, 6 o 9 cuotas - 45% interés |
-// |12 cuotas - Sin interés |
-// |--------------------------------------|
-aplicarInteresAmericanExpress() {
-    if (this.cantidadCuotas === 3 || this.cantidadCuotas === 6 || this.cantidadCuotas === 9) {
-
-        this.interesPorcentaje = 45;
-    } else if (this.cantidadCuotas === 12) {
-        this.interesPorcentaje = 0;
-    } else {
-
-        throw new Error("Cantidad de cuotas no válida para American Express.");
-    };
-};
-// Función que calcula los intereses
-calcularIntereses() {
-    const intereses = (this.idaYVuelta + this.impuestosTotal) * (this.interesPorcentaje /
-        100);
-    const totalConIntereses = this.idaYVuelta + this.impuestosTotal + intereses;
-    console.log(`Intereses aplicados: $${intereses}`);
-    console.log(`Total a pagar con intereses: $${totalConIntereses}`);
-};
-// Función que procesa el pago
-procesarPago() {
-    console.log("Procesando el pago...");
-    setTimeout(() => {
-        const pagoAcreditado = Math.random() < 0.5;
-        if (pagoAcreditado) {
-            this.mostrarResumenCompra();
-            this.calcularIntereses();
-            console.log("¡Pago acreditado!");
-        } else {
-            console.log("Tarjeta sin fondos. El pago no pudo ser procesado.");
-        };
-    }, 3000);
-};
-// Función que muestra el resumen de la compra efectuada por el usuario
-mostrarResumenCompra() {
-    console.log(`|--------------------|\n| RESUMEN DE PASAJES |\n|--------------------|`);
-    console.log(`Origen: ${this.origen}`);
-    console.log(`Destino: ${this.destino}`);
-    console.log(`Clase: ${this.clase}`);
-    console.log(`Cantidad de pasajeros: ${this.cantidadPasajeros}`);
-    console.log(`|---------------|\n| TIPO DE VIAJE |\n|---------------|`);
-    if (this.esIdaYVuelta) {
-        console.log(`IDA Y VUELTA`);
-        console.log(`Pasaje de ida: $${this.totalIda}`);
-        console.log(`Pasaje de vuelta: $${(this.idaYVuelta - this.totalIda)}`);
-        console.log(`Precio total (No incluye impuestos y tasas): $${this.idaYVuelta}`);
-        console.log(`Impuestos y tasas: $${this.impuestosTotal}`);
-        console.log(`Precio total (No incluye intereses): $${this.idaYVuelta +
-
-            this.impuestosTotal}`);
-    } else {
-        console.log(`IDA`);
-        console.log(`Precio total (No incluye impuestos y tasas): $${this.idaYVuelta}`);
-        console.log(`Impuestos y tasas: $${this.impuestosTotal}`);
-
-        console.log(`Precio total (No incluye intereses): $${this.idaYVuelta +
-
-            this.impuestosTotal}`);
-    };
-    console.log(`|--------------|\n| TIPO DE PAGO |\n|--------------|\n`);
-    console.log(`${this.tipoPago}`);
-    if (this.tipoPago === "TARJETA DEBITO") {
-        console.log(`Número de tarjeta: ${this.numeroTarjeta}`);
-        console.log(`Emisor de la tarjeta: ${this.emisorTarjeta}`);
-        console.log(`Vencimiento: ${this.vencimientoTarjeta}`);
-        console.log(`Código de seguridad: ${this.codigoSeguridad}`);
-        console.log(`Titular: ${this.nombreTitular}`);
-    } else if (this.tipoPago === "TARJETA CREDITO") {
-        console.log(`Número de tarjeta: ${this.numeroTarjeta}`);
-        console.log(`Emisor de la tarjeta: ${this.emisorTarjeta}`);
-        console.log(`Vencimiento: ${this.vencimientoTarjeta}`);
-        console.log(`Código de seguridad: ${this.codigoSeguridad}`);
-        console.log(`Titular: ${this.nombreTitular}`);
-        console.log(`Cantidad de cuotas seleccionadas: ${this.cantidadCuotas} \n Interés
-    
-    aplicado: ${this.interesPorcentaje}%`);
-    };
-};
-
-// Función que solicita la informacion del vuelo al usuario
-function solicitarInformacionVuelo() {
-    let origen = prompt(`Ingresa el origen de tu viaje (Buenos Aires, Salta o La Rioja)`);
-    let destino = prompt(`Ingresa el destino de tu viaje (Cordoba, Misiones o Mar del Plata)`);
-    let clase = prompt(`Ingresa la clase en la que deseas viajar (Economica, Premium, Business,
-    Primera)`);
-    let cantidadPasajeros = parseInt(prompt(`Ingresa la cantidad de pasajeros`));
-    let esIdaYVuelta = confirm(`¿Es un viaje de ida y vuelta?`);
-    let tipoPago = prompt(`Ingresa el tipo de pago (Tarjeta Debito o Tarjeta Credito)`);
-    return { origen, destino, clase, cantidadPasajeros, esIdaYVuelta, tipoPago };
-};
-// Validación de la información que se le solicita al usuario
-try {
-    const datosVuelo = solicitarInformacionVuelo();
-    let vuelo = new Vuelo(...Object.values(datosVuelo));
-    if (confirm("¿Deseas confirmar y procesar el pago?")) {
-        vuelo.procesarPago();
-    } else {
-        console.log("Pago cancelado por el usuario.");
-    }
-} catch (error) {
-    console.error(error.message);
-};
-*/

@@ -4,11 +4,11 @@
 document.getElementById("mostrarPopup").addEventListener("click", function () {
   document.getElementById("popup").style.display = "block";
   document.getElementById("detalle").innerHTML =
-  `Pasaje de ida: $ ${VUELO.totalIda}<br>
-  Pasaje de vuelta: $ ${(VUELO.idaYVuelta - VUELO.totalIda)}<br>
+  `Pasaje de ida: $ ${VUELO.precioDestino.toFixed(2)}<br>
+  Pasaje de vuelta: $ ${VUELO.precioIda.toFixed(2) - VUELO.precioDestino.toFixed(2)}<br>
   Impuestos y tasas: $ ${VUELO.impuestosTotal}<br>
   ___________________________________<br>
-  <strong>TARIFA TOTAL: $ ${VUELO.totalIda + VUELO.impuestosTotal}</strong>`;
+  <strong>TARIFA TOTAL: $ ${VUELO.precioTotalPasaje().toFixed(2)}</strong>`;
 });
 
 document.getElementById("popup").addEventListener("click", function (event) {

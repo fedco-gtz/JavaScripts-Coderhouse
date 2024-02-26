@@ -52,12 +52,7 @@
 
 
         <section class="services">
-            <form id="formularioBusqueda">
-                <label for="codigo">Ingrese el código de reserva:</label><br>
-                <input type="text" id="codigo" name="codigo" pattern="[A-Za-z0-9]{6}" maxlength="6" required><br>
-                <button type="submit">Buscar</button>
-              </form>
-              <div id="resultadoBusqueda"></div>
+            <div id="container"></div>
 
 
             <h2>PÁGINA EN CONSTRUCCIÓN</h2>
@@ -91,21 +86,51 @@
 <script src="booking.html"></script>
 
 <script>
-    document.getElementById("formularioBusqueda").addEventListener("submit", function(event) {
-        event.preventDefault(); // Evitar el envío del formulario
     
-        // Obtener el valor del código de reserva ingresado por el usuario
-        var codigoReserva = document.getElementById("codigo").value;
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("DOMContentLoaded disparado");
+
+    // Obtener los datos del LocalStorage
+    const codigoPagoExitoso = JSON.parse(localStorage.getItem('codigoPagoExitoso'));
+    const datosSeleccionados = JSON.parse(localStorage.getItem('datosSeleccionados'));
+    const datosPago = JSON.parse(localStorage.getItem('datosPago'));
     
-        // Aquí puedes realizar la búsqueda con el código de reserva, por ejemplo, en el localStorage
-        // Luego, mostrar los resultados en el div "resultadoBusqueda"
-        var resultadoDiv = document.getElementById("resultadoBusqueda");
-        resultadoDiv.innerHTML = ""; // Limpiar cualquier contenido previo
+    console.log("codigoPagoExitoso:", codigoPagoExitoso);
+    console.log("datosSeleccionados:", datosSeleccionados);
+    console.log("datosPago:", datosPago);
+
+    // Crear div para cada conjunto de datos
+    const container = document.getElementById('container');
+
+    // Función para crear las cards
+    document.addEventListener("DOMContentLoaded", function() {
+    // Obtener los datos del LocalStorage
+    const codigoPagoExitoso = JSON.parse(localStorage.getItem('codigoPagoExitoso'));
+    const datosSeleccionados = JSON.parse(localStorage.getItem('datosSeleccionados'));
+    const datosPago = JSON.parse(localStorage.getItem('datosPago'));
     
-        // Ejemplo de cómo podrías mostrar un mensaje de resultado
-        resultadoDiv.innerHTML = "<p>Se ha realizado la búsqueda con el código: " + codigoReserva + "</p>";
+    // Crear un array para cada conjunto de datos
+    const arrays = [];
+
+    if (codigoPagoExitoso) {
+        arrays.push(codigoPagoExitoso);
+    }
+
+    if (datosSeleccionados) {
+        arrays.push(datosSeleccionados);
+    }
+
+    if (datosPago) {
+        arrays.push(datosPago);
+    }
+
+    console.log(arrays); // Verificar los arrays en la consola
     
-        // Aquí puedes agregar más lógica para manejar la búsqueda y mostrar los resultados
-    });
-    </script>
+    // Limpieza del LocalStorage
+    localStorage.removeItem('codigoPagoExitoso');
+    localStorage.removeItem('datosSeleccionados');
+    localStorage.removeItem('datosPago');
+});
+});
+</script>
 </html>
