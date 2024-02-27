@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const FORM = document.getElementById('formularioVuelo');
     const ERROR_DIV = document.getElementById('errorDiv');
     const CORRECT_DIV = document.getElementById('correctDiv');
-
+    
     FORM.addEventListener('submit', event => {
         event.preventDefault();
 
@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let EMISOR = "Desconocido";
         let codigoSeguridadValido = true;
         let numeroTarjetaValido = true;
+        let cuotasCredito = 1;
 
         const PRIMER_DIGITO = NUMERO_TARJETA.charAt(0);
         if ((PRIMER_DIGITO === '4' && NUMERO_TARJETA.length !== 16) ||
@@ -45,6 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
             codigoSeguridadValido = false;
         };
 
+        if (TIPO_PAGO === "tarjetaCredito") {
+            cuotasCredito = document.getElementById("cuotasCreditoOption").value;
+        }
+
         if (!codigoSeguridadValido && !numeroTarjetaValido) {
             ERROR_DIV.style.display = 'block';
             return;
@@ -54,8 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         } else {
             ERROR_DIV.style.display = 'none';
-            CORRECT_DIV.innerText = `Tarjeta ${EMISOR} terminada en ${NUMERO_TARJETA.slice(-4)}           
-        `;
+            CORRECT_DIV.innerText = `Tarjeta ${EMISOR} terminada en ${NUMERO_TARJETA.slice(-4)}
+            ${cuotasCredito} cuotas de ${(VUELO.precioTotalPasaje()/cuotasCredito).toFixed(2)}`;
             CORRECT_DIV.style.display = 'block';
         }
 
@@ -68,3 +73,4 @@ document.addEventListener('DOMContentLoaded', () => {
         ERROR_DIV.style.display = 'none';
     });
 });
+
