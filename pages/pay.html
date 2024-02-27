@@ -146,15 +146,8 @@
                 </form>
             </div>
 
-
-            <div id="errorNumeroTarjeta" style="display: none;">
-                <p>Por favor, verifique el número de tarjeta.</p>
-            </div>
-            <div id="errorCodigoSeguridad" style="display: none;">
-                <p>Por favor, verifique el código de seguridad.</p>
-            </div>
-
-
+            <div id="errorDiv">VERIFICAR DATOS DE LA TARJETA</div>
+            <div id="correctDiv"></div>
 
             <div id="popupPay">
                 <div class="spinner"></div>
@@ -198,67 +191,4 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const FORM = document.getElementById('formularioVuelo');
-
-        FORM.addEventListener('submit', event => {
-            event.preventDefault();
-
-            const TIPO_PAGO = document.querySelector('input[name="tipo_pago"]:checked').value;
-            const NUMERO_TARJETA = document.getElementById('NumeroTarjetaInput').value;
-            const CODIGO_SEGURIDAD = document.getElementById('codigoSeguridadInput').value;
-
-            let CUOTAS_CREDITO = 1;
-            if (TIPO_PAGO === !"Tarjeta Crédito") {
-                CUOTAS_CREDITO = parseInt(document.getElementById('cuotasCreditoOption').value);
-            };
-
-            let EMISOR = "Desconocido";
-            let codigoSeguridadValido = true;
-
-            const PRIMER_DIGITO = NUMERO_TARJETA.charAt(0);
-            if (PRIMER_DIGITO === '4' && NUMERO_TARJETA.length === 16) {
-                EMISOR = "VISA";
-                if (CODIGO_SEGURIDAD.length !== 3) {
-                    codigoSeguridadValido = false;
-                }
-            } else if (PRIMER_DIGITO === '5' && NUMERO_TARJETA.length === 16) {
-                EMISOR = "MASTERCARD";
-                if (CODIGO_SEGURIDAD.length !== 3) {
-                    codigoSeguridadValido = false;
-                }
-            } else if (PRIMER_DIGITO === '3' && NUMERO_TARJETA.length === 15) {
-                EMISOR = "AMERICAN EXPRESS";
-                if (CODIGO_SEGURIDAD.length !== 4) {
-                    codigoSeguridadValido = false;
-                }
-            } else {
-                codigoSeguridadValido = false;
-            };
-
-            // Mostrar el mensaje de error si el código de seguridad no es válido
-            if (!codigoSeguridadValido) {
-                document.getElementById('errorCodigoSeguridad').style.display = 'block';
-                return;
-            };
-
-            // Ocultar el mensaje de error si el código de seguridad es válido
-            document.getElementById('errorCodigoSeguridad').style.display = 'none';
-
-            console.log(`|-----------------|\n| RESUMEN DE PAGO |\n|-----------------|`);
-            console.log(`Tipo de pago: ${TIPO_PAGO}`)
-            console.log(`Cantidad de cuotas: ${CUOTAS_CREDITO}`)
-            console.log(`Número de Tarjeta: ${NUMERO_TARJETA}`);
-            console.log(`Código de Seguridad: ${CODIGO_SEGURIDAD}`);
-            console.log(`Emisor de la Tarjeta: ${EMISOR}`);
-
-            // Mostrar el botón de PAGAR después de verificar los datos
-            document.getElementById('verificarButton').style.display = 'none';
-            document.getElementById('pagarButtonContainer').style.display = 'block';
-        });
-    });
-</script>
-
 </html>
