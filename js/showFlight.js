@@ -48,4 +48,3 @@ document.addEventListener("DOMContentLoaded", () => {
         SELECTED_DATA_CONTAINER.textContent = "No hay vuelos seleccionados";
     }
 });
-

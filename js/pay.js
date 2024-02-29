@@ -73,4 +73,3 @@ document.addEventListener('DOMContentLoaded', () => {
         ERROR_DIV.style.display = 'none';
     });
 });
-

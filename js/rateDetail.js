@@ -16,4 +16,3 @@ document.getElementById("popup").addEventListener("click", function (event) {
     this.style.display = "none";
   }
 });
-

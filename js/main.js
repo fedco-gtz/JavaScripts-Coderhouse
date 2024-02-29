@@ -93,7 +93,3 @@ console.log(`PRECIO TOTAL(SIN IMPUESTOS): ${VUELO.precioDestino.toFixed(2)} `);
 console.log(`Precio tipo destino: ${VUELO.precioIda.toFixed(2)} `);
 console.log(`Impuestos y tasas: ${VUELO.impuestosTotal.toFixed(2)} `);
 console.log(`PRECIO TOTAL(CON IMPUESTOS): ${VUELO.precioTotalPasaje().toFixed(2)} `);
-
-
-
-
