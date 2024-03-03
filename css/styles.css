@@ -288,6 +288,16 @@ main {
   border: 2px solid rgb(0, 0, 0);
 }
 
+.swalFireTitle {
+  color: rgb(0, 0, 0) !important;
+  font-weight: bold;
+}
+
+.swalFirePopup {
+  border: 5px solid rgb(0, 31, 85) !important;
+  border-radius: 20px;
+}
+
 #countdown {
   display: none;
 }
