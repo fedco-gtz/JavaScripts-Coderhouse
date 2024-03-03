@@ -1,9 +1,6 @@
 // |----------------------------------------------|
 // |     Código que simula el pago del pasaje     |
 // |----------------------------------------------|
-let codigosReserva = [];
-console.log(codigosReserva)
-
 function generarCodigo() {
     let codigo = '';
     const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -36,12 +33,12 @@ document.getElementById('pagarButton').addEventListener('click', function(event)
     let randomNumber = Math.random();
 
     setTimeout(() => {
-        (randomNumber > 0.5) ? (
+        randomNumber > 0.5 ? (
             document.querySelector('.checkmark').style.display = 'block',
             document.getElementById('mensaje').innerText = "PAGO REALIZADO EXITOSAMENTE",
             document.getElementById('mensaje').classList.add('success'),
-            codigosReserva.push(generarCodigo()),
-            document.getElementById('codigoExitoso').innerText = `Reserva: ${codigosReserva[codigosReserva.length - 1]}`
+            localStorage.setItem('codigoReserva', generarCodigo()),
+            document.getElementById('codigoExitoso').innerText = `Reserva: ${localStorage.getItem('codigoReserva')}`
         ) : (
             document.querySelector('.checkerror').style.display = 'block',
             document.getElementById('mensaje').innerText = "FONDOS INSUFICIENTES",
@@ -52,3 +49,4 @@ document.getElementById('pagarButton').addEventListener('click', function(event)
 });
 
 document.querySelector('.close').addEventListener('click', () => reiniciar());
+

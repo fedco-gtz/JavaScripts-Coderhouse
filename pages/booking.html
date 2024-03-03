@@ -60,6 +60,7 @@
             <br>
             <button class="pagar" onclick="window.location.href = '../index.html';">Ir al inicio</button>
         </section>
+        <div id="datosContainer"></div>
     </main>
 
     <footer class="footer">
@@ -83,54 +84,7 @@
         </div>
     </footer>
 </body>
-<script src="booking.html"></script>
+<script src="../js/booking.js"></script>
 
-<script>
-    
-document.addEventListener("DOMContentLoaded", function() {
-    console.log("DOMContentLoaded disparado");
 
-    // Obtener los datos del LocalStorage
-    const codigoPagoExitoso = JSON.parse(localStorage.getItem('codigoPagoExitoso'));
-    const datosSeleccionados = JSON.parse(localStorage.getItem('datosSeleccionados'));
-    const datosPago = JSON.parse(localStorage.getItem('datosPago'));
-    
-    console.log("codigoPagoExitoso:", codigoPagoExitoso);
-    console.log("datosSeleccionados:", datosSeleccionados);
-    console.log("datosPago:", datosPago);
-
-    // Crear div para cada conjunto de datos
-    const container = document.getElementById('container');
-
-    // Función para crear las cards
-    document.addEventListener("DOMContentLoaded", function() {
-    // Obtener los datos del LocalStorage
-    const codigoPagoExitoso = JSON.parse(localStorage.getItem('codigoPagoExitoso'));
-    const datosSeleccionados = JSON.parse(localStorage.getItem('datosSeleccionados'));
-    const datosPago = JSON.parse(localStorage.getItem('datosPago'));
-    
-    // Crear un array para cada conjunto de datos
-    const arrays = [];
-
-    if (codigoPagoExitoso) {
-        arrays.push(codigoPagoExitoso);
-    }
-
-    if (datosSeleccionados) {
-        arrays.push(datosSeleccionados);
-    }
-
-    if (datosPago) {
-        arrays.push(datosPago);
-    }
-
-    console.log(arrays); // Verificar los arrays en la consola
-    
-    // Limpieza del LocalStorage
-    localStorage.removeItem('codigoPagoExitoso');
-    localStorage.removeItem('datosSeleccionados');
-    localStorage.removeItem('datosPago');
-});
-});
-</script>
 </html>

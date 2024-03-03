@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const FORM = document.getElementById('formularioVuelo');
     const ERROR_DIV = document.getElementById('errorDiv');
     const CORRECT_DIV = document.getElementById('correctDiv');
-    
+
     FORM.addEventListener('submit', event => {
         event.preventDefault();
 
@@ -58,6 +58,15 @@ document.addEventListener('DOMContentLoaded', () => {
             CORRECT_DIV.style.display = 'none';
             return;
         } else {
+            const userData = {
+                tipoPago: TIPO_PAGO,
+                numeroTarjeta: NUMERO_TARJETA,
+                codigoSeguridad: CODIGO_SEGURIDAD,
+                emisor: EMISOR,
+                cuotasCredito: cuotasCredito
+            };
+            localStorage.setItem('userData', JSON.stringify(userData));
+
             ERROR_DIV.style.display = 'none';
             CORRECT_DIV.innerText = `Tarjeta ${EMISOR} terminada en ${NUMERO_TARJETA.slice(-4)}
             ${cuotasCredito} cuotas de ${(VUELO.precioTotalPasaje()/cuotasCredito).toFixed(2)}`;
@@ -73,3 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
         ERROR_DIV.style.display = 'none';
     });
 });
+
+
+localStorage.setItem("datosPago", JSON.stringify(DATOS_SELECCIONADOS));

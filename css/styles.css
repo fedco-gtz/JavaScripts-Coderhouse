@@ -6,11 +6,6 @@
   font-family: "Dosis", sans-serif;
 }
 
-@media screen and (min-width: 320px) and (max-width: 768px) {
-  header .blandLogo img {
-    display: none !important;
-  }
-}
 header {
   display: flex !important;
   justify-content: space-between;
@@ -114,9 +109,6 @@ li:hover #submenu {
   margin-top: 50px;
   margin-bottom: 20px;
   color: rgb(255, 1, 43);
-}
-.services a {
-  margin-left: 940px;
 }
 
 .metrics {

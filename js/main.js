@@ -72,14 +72,11 @@ class Vuelo {
         return precioTotal;
     };
 };
-// Obtengo los datos almacenados en localStorage
+
 const DATOSLOCALSTORAGE = localStorage.getItem('datosSeleccionados');
-// Convierto la cadena JSON en un objeto JavaScript
 const DATOSSELECCIONADOS = JSON.parse(DATOSLOCALSTORAGE);
-// Creo una instancia de la clase Vuelo con los datos obtenidos
 const VUELO = new Vuelo(DATOSSELECCIONADOS);
 
-// Resumen de los pasajes a comprar
 console.log(`|--------------------|\n| RESUMEN DE PASAJES |\n|--------------------|`);
 console.log(`Origen: ${VUELO.origen} `);
 console.log(`Destino: ${VUELO.destino} `);
