@@ -147,12 +147,16 @@ li:hover #submenu {
 }
 .footerSection a {
   color: rgb(242, 242, 242);
-  text-decoration: none;
   padding-bottom: 10px;
+}
+.footerSection a:hover {
+  color: rgb(255, 1, 43);
+  text-decoration: none;
 }
 
 .socialNetworks {
   margin-top: 5px;
+  text-decoration: none;
 }
 .socialNetworks a {
   margin-right: 10px;

@@ -28,13 +28,19 @@
 
 	a {
 		color: $color_2;
-		text-decoration: none;
 		padding-bottom: 10px;
+
+		&:hover {
+			color: $color_3;
+			text-decoration: none;
+		}
 	}
+
 }
 
 .socialNetworks {
 	margin-top: 5px;
+	text-decoration: none;
 
 	a {
 		margin-right: 10px;
