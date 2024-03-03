@@ -181,6 +181,10 @@ main {
   text-transform: uppercase;
 }
 
+.extraInfo {
+  margin: 20px;
+}
+
 .dataCard {
   flex-basis: 300px;
   padding: 20px;

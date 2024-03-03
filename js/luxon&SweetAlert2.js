@@ -25,7 +25,7 @@ const validarFechas = () => {
             imageHeight: 150,
             title: 'ALGO VA MAL ...',
             text: 'La fecha de viaje debe ser mayor que la fecha actual.',
-            timer: 2500,
+            timer: 4500,
             customClass: {
                 title: 'swalFireTitle',
                 popup: 'swalFirePopup',
@@ -45,7 +45,7 @@ const validarFechas = () => {
                 imageHeight: 150,
                 title: 'ALGO VA MAL ...',
                 text: 'La fecha de destino debe ser distinta a la fecha de viaje.',
-                timer: 2500,
+                timer: 4500,
                 customClass: {
                     title: 'swalFireTitle',
                     popup: 'swalFirePopup',
