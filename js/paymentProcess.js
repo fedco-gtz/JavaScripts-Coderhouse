@@ -49,4 +49,3 @@ document.getElementById('pagarButton').addEventListener('click', function(event)
 });
 
 document.querySelector('.close').addEventListener('click', () => reiniciar());
-

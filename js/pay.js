@@ -83,5 +83,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-
 localStorage.setItem("datosPago", JSON.stringify(DATOS_SELECCIONADOS));

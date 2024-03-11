@@ -65,6 +65,3 @@ for (let i = 0; i < TIPOVUELO.length; i++) {
 
 document.getElementById('fecha').addEventListener('change', validarFechas);
 document.getElementById('fecha_regreso').addEventListener('change', validarFechas);
-
-
-

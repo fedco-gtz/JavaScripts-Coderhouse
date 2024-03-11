@@ -39,5 +39,3 @@ localStorage.removeItem('codigoReserva');
 console.log(datosSeleccionados);
 console.log(userData);
 console.log(codigosReserva);
-
-

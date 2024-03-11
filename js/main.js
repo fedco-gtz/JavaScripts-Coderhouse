@@ -1,7 +1,6 @@
-// |-----08/02/2024------| 
-// | Tercera pre entrega |
-// |---------------------| 
-
+// |--11/03/2024----| 
+// | Proyecto Final |
+// |----------------| 
 let destino = ["Buenos Aires | EPA | Aeropuerto El Palomar", "Buenos Aires | EZE | Aeropuerto Int. Ezeiza", "Buenos Aires | FDO | Aeropuerto Int. de San Fernando", "Buenos Aires | AEP | Aeroparque Jorge Newbery", "Catamarca | CTC | Aeropuerto Gral. Felipe Varela", "Chaco | RES | Aeropuerto Int. de Resistencia", "Chubut | CRD | Aeropuerto Int. Gral. Enrique Mosconi", "Chubut | EQS | Aeropuerto de Esquel, Brig. Gral. Antonio Parodi", "Chubut | PMY | Aeropuerto El Tehuelche", "Córdoba | COR | Aeropuerto Int. Ing. Aer. Ambrosio Taravella", "Córdoba | RCU | Aeropuerto Área de Material de Río Cuarto", "Entre Ríos | PRA | Aeropuerto Gral. Urquiza", "Formosa | FMA | Aeropuerto Int. de Formosa", "Jujuy | JUJ | Aeropuerto Int. Gdor. Horacio Guzmán", "La Pampa | GPO | Aeropuerto de Gral. Pico", "La Pampa | RSA | Aeropuerto de Santa Rosa", "La Rioja | IRJ | Aeropuerto Cap. Vicente Almandos Almonacide", "Mar del Plata | MDQ | Aeropuerto Int. Astor Piazzolla", "Mendoza | AFA | Aeropuerto Int. Suboficial Ayudante Santiago Germano", "Mendoza | LGS | Aeropuerto Int. de Malargüe", "Mendoza | MDZ | Aeropuerto Int. El Plumerillo", "Misiones | IGR | Aeropuerto Int. de las Cataratas del Iguazú", "Misiones | PSS | Aeropuerto Libertador Gral. José de San Martín", "Río Negro | BRC | Aeropuerto Int. Tte. Luis Candelaria", "Río Negro | VDM | Aeropuerto Int. Gdor. Edgardo Castello", "Salta | SLA | Aeropuerto Int. Martín Miguel de Güemes", "San Juan | UAQ | Aeropuerto de San Juan", "San Luis | LUQ | Aeropuerto Brig. Mayor Cesar Raúl Ojeda", "San Luis | VME | Aeropuerto de Villa Reynolds", "Santa Cruz | RGL | Aeropuerto Int. Piloto Civil Norberto Fernández", "Santa Fé | RCQ | Aeropuerto Tte. Daniel Jukic", "Santiago del Estero | RHD | Aeropuerto Int. Termas de Rio Hondo", "Santiago del Estero | SDE | Aeropuerto 'Madre de Ciudades'", "Tierra del Fuego | RGA | Aeropuerto Int. Gdor. Ramon Trejo Noel", "Tucuman | TUC | Aeropuerto Int. de Tucumán Benjamín Matienzo",];
 
 class Vuelo {

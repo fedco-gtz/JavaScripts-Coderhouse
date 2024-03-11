@@ -15,7 +15,6 @@ function timeLeft() {
 // |----------------------------------------------------|
 // |   Código que hace dinamico el formulario de pago   |
 // |----------------------------------------------------|
-
 document.addEventListener("DOMContentLoaded", function () {
     const tarjetaDebitoInput = document.getElementById("tarjetaDebito");
     const tarjetaCreditoInput = document.getElementById("tarjetaCredito");
