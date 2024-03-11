@@ -40,6 +40,8 @@
 	box-sizing: border-box;
 	margin-left: auto;
 	margin-right: auto;
+	color: $color_1;
+	font-size: 20px;
 
 	ul {
 		display: flex;
@@ -107,14 +109,54 @@
 		margin-top: 8px;
 		color: $color_1;
 		font-weight: bold;
-	position: relative; /* Añadido */
-	z-index: 1; /* Añadido */
+		position: relative;
+		z-index: 1;
 
 	}
 
 	h5 {
 		color: $color_3;
-		position: relative; /* Añadido */
-		z-index: 1; /* Añadido */
+		position: relative;
+		z-index: 1;
+	}
+}
+
+#divVisible {
+	display: none;
+	align-items: center;
+	justify-content: center;
+	border: 2px solid $color_1;
+	border-radius: 20px;
+	padding: 16px;
+	width: 80%;
+	box-sizing: border-box;
+	margin-left: auto;
+	margin-right: auto;
+
+	ul {
+		li {
+			list-style-type: none;
+			padding-bottom: 10px;
+			font-size: 18px;
+		}
+	}
+
+	h4 {
+		font-size: 28px;
+		padding-bottom: 15px;
+		color: $color_5;
+	}
+
+	h5 {
+		font-size: 24px;
+		padding-bottom: 8px;
+		color: $color_1;
+	}
+
+	p {
+		justify-content: center;
+		margin: 0;
+		font-size: 20px;
+		color: $color_1;
 	}
 }
