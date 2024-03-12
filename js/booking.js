@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <h5><b>PAGO</b></h5>
             <ul>
             <li>TARJETA <b>${USERDATAOBJ.emisor}</b> TERMINADA EN <b>${USERDATAOBJ.numeroTarjeta.slice(-4)}</b></li>
-            <li><b>TIPO DE PAGO:</b> ${USERDATAOBJ.tipoPago.slice(7).toUpperCase()} - <b>CUOTA:</b> ${USERDATAOBJ.cuotasCredito}</li>
+            <li><b>TIPO DE PAGO:</b> ${USERDATAOBJ.tipoPago.slice(7).toUpperCase()} - <b>CUOTAS:</b> ${USERDATAOBJ.cuotasCredito}</li>
         </ul>`;
         document.getElementById('divVisible').appendChild(divContent);
         document.getElementById('divVisible').style.display = 'block';
