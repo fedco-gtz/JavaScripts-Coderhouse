@@ -40,7 +40,7 @@ function login() {
   fetch('https://09cf195c04ea43a6b52f65caee85d0c7.api.mockbin.io/')
     .then(response => response.json())
     .then(users => {
-      var foundUser = users.find(user => user.username === username);
+      let foundUser = users.find(user => user.username === username);
       if (foundUser) {
         closeLoginPopup();
         showWelcomeMessage(foundUser.name);
